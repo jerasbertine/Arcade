@@ -17,6 +17,8 @@ CC = g++
 
 CFLAGS = -Wall -Wextra -std=c++17
 
+CPPFLAGS = -I./include
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
