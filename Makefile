@@ -23,12 +23,30 @@ GAMES_LIB = src/game_lib
 
 GRAPH_LIB = src/graph_lib
 
+RED         := $(shell tput -Txterm setaf 1)
+
+GREEN       := $(shell tput -Txterm setaf 2)
+
+BLUE        := $(shell tput -Txterm setaf 6)
+
+WHITE       := $(shell tput -Txterm setaf 7)
+
+ORANGE		:=	$(shell printf "\e[38;5;208m")
+
+RESET 		:= $(shell tput -Txterm sgr0)
+
 all: $(NAME)
-	make -C $(GAMES_LIB)
-	make -C $(GRAPH_LIB)
+	@make -s -C $(GAMES_LIB)
+	@make -s -C $(GRAPH_LIB)
+	@echo "$(GREEN)All done$(RESET)"
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(OBJ)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
+	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+
+%.o:	%.c
+	@echo "$(BLUE)Compiling [ $(GREEN)$(notdir $<)$(BLUE) -> $(ORANGE)$(notdir $@)$(BLUE) ]"
+	@$(CC) -o $@ -c $< $(CFLAGS) $(CPPFLAGS)
 
 debug: CFLAGS += -g3
 debug: re
@@ -36,14 +54,17 @@ debug: re
 re: fclean all
 
 clean:
-	rm -f $(OBJ)
-	make clean -C $(GAMES_LIB)
-	make clean -C $(GRAPH_LIB)
+	@rm -f $(OBJ)
+	@echo "$(BLUE)Clean Game Lib$(RESET)"
+	@make clean -s -C $(GAMES_LIB)
+	@echo "$(BLUE)Clean Graph Lib$(RESET)"
+	@make clean -s -C $(GRAPH_LIB)
 
 fclean: clean
-	rm -f $(NAME)
-	make fclean -C $(GAMES_LIB)
-	make fclean -C $(GRAPH_LIB)
+	@rm -f $(NAME)
+	@make fclean -s -C $(GAMES_LIB)
+	@make fclean -s -C $(GRAPH_LIB)
+	@echo "$(ORANGE)Removing $(RED)$(NAME) $(RESET)"
 
 core: $(NAME)
 

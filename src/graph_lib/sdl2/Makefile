@@ -20,11 +20,27 @@ CFLAGS = -shared -fPIC
 
 CPPFLAGS = -I./include
 
+RED         := $(shell tput -Txterm setaf 1)
+
+GREEN       := $(shell tput -Txterm setaf 2)
+
+PURPLE       := $(shell tput -Txterm setaf 5)
+
+BLUE        := $(shell tput -Txterm setaf 6)
+
+WHITE       := $(shell tput -Txterm setaf 7)
+
+ORANGE		:=	$(shell printf "\e[38;5;208m")
+
+RESET 		:= $(shell tput -Txterm sgr0)
+
 all: $(NAME)
-	mv ./$(NAME) $(LIB_PATH)/$(NAME)
+	@echo "$(BLUE)Move [ $(RED)$(NAME) $(BLUE) -> $(PURPLE) $(LIB_PATH) $(BLUE) ]$(RESET)"
+	@mv ./$(NAME) $(LIB_PATH)/$(NAME)
 
 $(NAME): $(OBJ)
-	$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(OBJ)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
+	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
 
 debug: CFLAGS += -g3
 debug: re
@@ -32,9 +48,10 @@ debug: re
 re: fclean all
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
+	@echo "$(ORANGE)Removing $(NAME) file.$(RESET)"
 
 fclean: clean
-	rm -f $(LIB_PATH)/$(NAME)
+	@rm -f $(LIB_PATH)/$(NAME)
 
 .PHONY: all re clean fclean
