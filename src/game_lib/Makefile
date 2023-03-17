@@ -10,8 +10,8 @@ GAME1_PATH = game1 #name a changer
 GAME2_PATH = game2 #name a changer
 
 all:
-	make -C $(GAME1_PATH)
-	make -C $(GAME2_PATH)
+	@make -C $(GAME1_PATH)
+	@make -C $(GAME2_PATH)
 #name a changer ^^^^
 
 re: fclean all

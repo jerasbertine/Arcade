@@ -10,8 +10,8 @@ NCURSES_PATH = ncurses
 SDL2_PATH = sdl2
 
 all:
-	make -C $(NCURSES_PATH)
-	make -C $(SDL2_PATH)
+	@make -C $(NCURSES_PATH)
+	@make -C $(SDL2_PATH)
 
 re: fclean all
 
