@@ -20,6 +20,7 @@ int main(int ac, char **av)
 {
     if (ac != 2)
         usage();
-        return 84;
+    else
+        std::cout << "You chose " << av[1] << std::endl;
     return 0;
 }
