@@ -12,7 +12,7 @@ SRC = 	main.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = lib3 #name a changer
+NAME = arcade_sfml.so
 
 CC = g++
 

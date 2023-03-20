@@ -9,23 +9,23 @@ NCURSES_PATH = ncurses
 
 SDL2_PATH = sdl2
 
-LIB3_PATH = lib3
+SFML_PATH = sfml
 
 all:
 	@make -C $(NCURSES_PATH)
 	@make -C $(SDL2_PATH)
-	@make -C $(LIB3_PATH)
+	@make -C $(SFML_PATH)
 
 re: fclean all
 
 clean:
 	make clean -C $(NCURSES_PATH)
 	make clean -C $(SDL2_PATH)
-	make clean -C $(LIB3_PATH)
+	make clean -C $(SFML_PATH)
 
 fclean: clean
 	make fclean -C $(NCURSES_PATH)
 	make fclean -C $(SDL2_PATH)
-	make fclean -C $(LIB3_PATH)
+	make fclean -C $(SFML_PATH)
 
 .PHONY: all re clean fclean
