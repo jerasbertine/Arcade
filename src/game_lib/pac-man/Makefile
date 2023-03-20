@@ -12,7 +12,7 @@ SRC = 	main.cpp \
 
 OBJ = $(SRC:.cpp=.o)
 
-NAME = game1.so #name a changer
+NAME = arcade_pacman.so
 
 CC = g++
 

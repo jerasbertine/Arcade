@@ -5,26 +5,23 @@
 ## Makefile
 ##
 
-GAME1_PATH = game1 #name a changer
+PACMAN_PATH = pac-man
 
-GAME2_PATH = game2 #name a changer
+SNAKE_PATH = snake
 
 all:
-	@make -C $(GAME1_PATH)
-	@make -C $(GAME2_PATH)
-#name a changer ^^^^
+	@make -C $(PACMAN_PATH)
+	@make -C $(SNAKE_PATH)
 
 re: fclean all
 
 clean:
-	make clean -C $(GAME1_PATH)
-	make clean -C $(GAME2_PATH)
-#name a changer ^^^^
+	make clean -C $(PACMAN_PATH)
+	make clean -C $(SNAKE_PATH)
 
 
 fclean: clean
-	make fclean -C $(GAME1_PATH)
-	make fclean -C $(GAME2_PATH)
-#name a changer ^^^^
+	make fclean -C $(PACMAN_PATH)
+	make fclean -C $(SNAKE_PATH)
 
 .PHONY: all re clean fclean
