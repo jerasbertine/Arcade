@@ -5,6 +5,7 @@ Arcade Project:
 - Villon ZHANG (villon.zhang@epitech.eu)
 
 Other groups:
+
  || 1st group ||
 - Thomas TRAN (thomas.tran@epitech.eu)
 - Lenny VONGPHOUTHONE (lenny.vongphouthone@epitech.eu)
