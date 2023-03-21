@@ -42,9 +42,9 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(OBJ)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
-	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS) $(CPPFLAGS)
 
-%.o:	%.c
+%.o:	%.cpp
 	@echo "$(BLUE)Compiling [ $(GREEN)$(notdir $<)$(BLUE) -> $(ORANGE)$(notdir $@)$(BLUE) ]"
 	@$(CC) -o $@ -c $< $(CFLAGS) $(CPPFLAGS)
 
