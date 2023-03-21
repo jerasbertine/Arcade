@@ -20,8 +20,9 @@ int main(int ac, char **av)
 {
     *av = NULL;
 
-    if (ac != 2)
+    if (ac != 2) {
         usage();
         return 84;
+    }
     return 0;
 }
