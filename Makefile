@@ -7,7 +7,8 @@
 
 SRC = 	main.cpp \
 		$(addprefix src/, 	\
-		DLLoader.cpp)
+		DLLoader.cpp	\
+		Error.cpp)
 
 OBJ = $(SRC:.cpp=.o)
 
