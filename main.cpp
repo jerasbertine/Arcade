@@ -6,6 +6,7 @@
 */
 
 #include <iostream>
+#include "include/Manage_lib.hpp"
 
 static void usage(void)
 {
@@ -24,5 +25,6 @@ int main(int ac, char **av)
         usage();
         return 84;
     }
+    check_up(av[1]);
     return 0;
 }

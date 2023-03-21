@@ -10,8 +10,6 @@ LIB_PATH = ../../../lib
 SRC = 	main.cpp \
 		$(addprefix src/,)
 
-OBJ = $(SRC:.cpp=.o)
-
 NAME = arcade_ncurses.so
 
 CC = g++
@@ -38,9 +36,9 @@ all: $(NAME)
 	@echo "$(BLUE)Move [ $(RED)$(NAME) $(BLUE) -> $(PURPLE) $(LIB_PATH) $(BLUE) ]$(RESET)"
 	@mv ./$(NAME) $(LIB_PATH)/$(NAME)
 
-$(NAME): $(OBJ)
-	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(OBJ)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
-	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+$(NAME):
+	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(SRC)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
+	@$(CC) -o $(NAME) $(SRC) $(CFLAGS)
 
 debug: CFLAGS += -g3
 debug: re
