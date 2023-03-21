@@ -20,7 +20,7 @@ clean:
 	make clean -C $(SNAKE_PATH)
 
 
-fclean: clean
+fclean:
 	make fclean -C $(PACMAN_PATH)
 	make fclean -C $(SNAKE_PATH)
 

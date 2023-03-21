@@ -23,7 +23,7 @@ clean:
 	make clean -C $(SDL2_PATH)
 	make clean -C $(SFML_PATH)
 
-fclean: clean
+fclean:
 	make fclean -C $(NCURSES_PATH)
 	make fclean -C $(SDL2_PATH)
 	make fclean -C $(SFML_PATH)

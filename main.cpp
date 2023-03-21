@@ -18,6 +18,8 @@ static void usage(void)
 
 int main(int ac, char **av)
 {
+    *av = NULL;
+
     if (ac != 2)
         usage();
         return 84;

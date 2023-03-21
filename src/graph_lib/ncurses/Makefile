@@ -51,7 +51,7 @@ clean:
 	@rm -f $(OBJ)
 	@echo "$(ORANGE)Removing $(NAME) file.$(RESET)"
 
-fclean: clean
+fclean:
 	@rm -f $(LIB_PATH)/$(NAME)
 
 .PHONY: all re clean fclean
