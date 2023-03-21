@@ -15,7 +15,7 @@ NAME = arcade
 
 CC = g++
 
-CFLAGS = -Wall -Wextra -std=c++17
+CFLAGS = -Wall -Wextra -std=c++17 -fno-gnu-unique
 
 CPPFLAGS = -I./include
 
