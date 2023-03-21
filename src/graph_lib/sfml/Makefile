@@ -18,6 +18,8 @@ CFLAGS = -shared -fPIC
 
 CPPFLAGS = -I./include
 
+SFMLFLAGS = -lsfml-graphics -lsfml-window -lsfml-system
+
 RED         := $(shell tput -Txterm setaf 1)
 
 GREEN       := $(shell tput -Txterm setaf 2)
@@ -38,7 +40,7 @@ all: $(NAME)
 
 $(NAME):
 	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(SRC)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
-	@$(CC) -o $(NAME) $(SRC) $(CFLAGS)
+	@$(CC) -o $(NAME) $(SRC) $(CFLAGS) $(SFMLFLAGS)
 
 debug: CFLAGS += -g3
 debug: re
@@ -46,7 +48,6 @@ debug: re
 re: fclean all
 
 clean:
-#	@rm -f $(OBJ)
 	@echo "$(ORANGE)Removing $(NAME) file.$(RESET)"
 
 fclean:
