@@ -8,17 +8,33 @@
 #ifndef DLLOADER_HPP_
 #define DLLOADER_HPP_
 
+#include <dlfcn.h>
+#include <iostream>
 template<typename T>
 class DLLoader {
     public:
-        DLLoader();
-        ~DLLoader();
-        T *getInstance() const;
+        DLLoader(std::string path) {
+            void *(*instanceCreator)(void);
+            this->_handle = dlopen(path.c_str(), RTLD_LAZY | RTLD_GLOBAL);
+            if (!this->_handle)
+                std::cout << "Error: " << dlerror() << std::endl;
+            instanceCreator = (void* (*)()) dlsym(this->_handle, "entryPoint");
+            if (!instanceCreator)
+                std::cout << "Error: " << dlerror() << std::endl;
+            this->_instance = (T *) instanceCreator();
+        }
+        ~DLLoader() {
+            delete _instance;
+            dlclose(_handle);
+        };
+        T *getInstance() const {
+            return _instance;
+        };
 
     protected:
     private:
         void *_handle;
-        T _instance;
+        T *_instance;
 };
 
 #endif /* !DLLOADER_HPP_ */

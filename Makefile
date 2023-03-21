@@ -7,7 +7,7 @@
 
 SRC = 	main.cpp \
 		$(addprefix src/, 	\
-		DLLoader.cpp	\
+		DLLoader.cpp,		\
 		Error.cpp)
 
 OBJ = $(SRC:.cpp=.o)
@@ -16,7 +16,7 @@ NAME = arcade
 
 CC = g++
 
-CFLAGS = -Wall -Wextra -std=c++17 -fno-gnu-unique
+CFLAGS = -Wall -Wextra -std=c++17 -fno-gnu-unique -ldl
 
 CPPFLAGS = -I./include
 
