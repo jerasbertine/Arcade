@@ -46,7 +46,6 @@ debug: re
 re: fclean all
 
 clean:
-	@rm -f $(OBJ)
 	@echo "$(ORANGE)Removing $(NAME) file.$(RESET)"
 
 fclean:
