@@ -6,7 +6,7 @@
 */
 
 #ifndef MANAGE_LIB_HPP_
-#define MANAGE_LIB_HPP_
+    #define MANAGE_LIB_HPP_
 
 #include <dlfcn.h>
 #include "DLLoader.hpp"

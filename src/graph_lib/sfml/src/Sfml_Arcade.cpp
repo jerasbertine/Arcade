@@ -6,50 +6,45 @@
 */
 
 #include <SFML/Graphics.hpp>
+#include <SFML/Window.hpp>
+#include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
+#include <SFML/Config.hpp>
 #include "../include/Sfml_Arcade.hpp"
 
 Sfml_Arcade::Sfml_Arcade()
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
-    }
+    this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade SFML!");
 }
 
 Sfml_Arcade::~Sfml_Arcade()
 {
+    delete(this->_window);
 }
 
 void Sfml_Arcade::display()
 {
-    std::cout << "display" << std::endl;
+    this->_window->display();
 }
 
 void Sfml_Arcade::clear()
 {
+    this->_window->clear();
 }
 
 void Sfml_Arcade::draw(std::shared_ptr<arcade::IObject> object)
 {
-
 }
 
 arcade::Input Sfml_Arcade::event()
 {
-    return arcade::Input::ACTION1;
+    while (this->_window->pollEvent(this->_event)) {
+        if (this->_event.type == sf::Event::Closed) {
+            this->_window->close();
+            return arcade::Input::EXIT;
+        }
+    }
+    return arcade::Input::UNDEFINED;
 }
 
 extern "C" {
