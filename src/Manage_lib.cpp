@@ -19,5 +19,11 @@ Manage_lib::~Manage_lib()
 void check_up(std::string path)
 {
     std::shared_ptr<DLLoader<arcade::IGraphics>> libSfml = std::make_shared<DLLoader<arcade::IGraphics>>(path);
-    // std::cout << libSfml->getInstance()->event() << std::endl;
+    arcade::Input state = arcade::Input::UNDEFINED;
+    std::shared_ptr<arcade::IObject> check;
+    while ((state = libSfml->getInstance()->event()) != arcade::Input::EXIT) {
+        libSfml->getInstance()->display();
+        libSfml->getInstance()->clear();
+        libSfml->getInstance()->draw(check);
+    }
 }

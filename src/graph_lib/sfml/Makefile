@@ -24,7 +24,7 @@ RED         := $(shell tput -Txterm setaf 1)
 
 GREEN       := $(shell tput -Txterm setaf 2)
 
-PURPLE       := $(shell tput -Txterm setaf 5)
+PURPLE      := $(shell tput -Txterm setaf 5)
 
 BLUE        := $(shell tput -Txterm setaf 6)
 
