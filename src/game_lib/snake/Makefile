@@ -10,8 +10,6 @@ LIB_PATH = ../../../lib
 SRC = 	main.cpp \
 		$(addprefix src/,)
 
-OBJ = $(SRC:.cpp=.o)
-
 NAME = arcade_snake.so
 
 CC = g++
@@ -24,7 +22,7 @@ RED         := $(shell tput -Txterm setaf 1)
 
 GREEN       := $(shell tput -Txterm setaf 2)
 
-PURPLE       := $(shell tput -Txterm setaf 5)
+PURPLE      := $(shell tput -Txterm setaf 5)
 
 BLUE        := $(shell tput -Txterm setaf 6)
 
@@ -38,9 +36,9 @@ all: $(NAME)
 	@echo "$(BLUE)Move [ $(RED)$(NAME) $(BLUE) -> $(PURPLE) $(LIB_PATH) $(BLUE) ]$(RESET)"
 	@mv ./$(NAME) $(LIB_PATH)/$(NAME)
 
-$(NAME): $(OBJ)
-	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(OBJ)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
-	@$(CC) -o $(NAME) $(OBJ) $(CFLAGS)
+$(NAME):
+	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(SRC)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
+	@$(CC) -o $(NAME) $(SRC) $(CFLAGS)
 
 debug: CFLAGS += -g3
 debug: re
@@ -48,7 +46,7 @@ debug: re
 re: fclean all
 
 clean:
-	@rm -f $(OBJ)
+#	@rm -f $(OBJ)
 	@echo "$(ORANGE)Removing $(NAME) file.$(RESET)"
 
 fclean:
