@@ -20,7 +20,8 @@ void check_up(std::string path)
 {
     std::shared_ptr<DLLoader<arcade::IGraphics>> libSfml = std::make_shared<DLLoader<arcade::IGraphics>>(path);
     arcade::Input state = arcade::Input::UNDEFINED;
-    std::shared_ptr<arcade::IObject> check;
+    std::shared_ptr<arcade::ITile> check;
+    // check->setTexture("src/graph_lib/sfml/assets/background.jpg");
     while ((state = libSfml->getInstance()->event()) != arcade::Input::EXIT) {
         libSfml->getInstance()->display();
         libSfml->getInstance()->clear();

@@ -8,7 +8,10 @@
 SRC = 	main.cpp \
 		$(addprefix src/, 	\
 		Manage_lib.cpp	\
-		Error.cpp)
+		Error.cpp	 \
+		ASound.cpp	 \
+		AText.cpp	 \
+		ATile.cpp)
 
 OBJ = $(SRC:.cpp=.o)
 
