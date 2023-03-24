@@ -35,6 +35,26 @@ void Sfml_Arcade::clear()
 void Sfml_Arcade::draw(std::shared_ptr<arcade::IObject> object)
 {
     std::shared_ptr<arcade::ITile> tile = std::dynamic_pointer_cast<arcade::ITile>(object);
+    if (tile != nullptr) {
+        this->_texture.loadFromFile(tile->getTexture());
+        this->_sprite.setTexture(this->_texture);
+        this->_window->draw(this->_sprite);
+        return;
+    }
+    std::shared_ptr<arcade::ISound> sound = std::dynamic_pointer_cast<arcade::ISound>(object);
+    if (sound != nullptr) {
+        // this->_texture.loadFromFile(tile->getTexture());
+        // this->_sprite.setTexture(this->_texture);
+        // this->_window->draw(this->_sprite);
+        return;
+    }
+    std::shared_ptr<arcade::IText> text = std::dynamic_pointer_cast<arcade::IText>(object);
+    if (text != nullptr) {
+        // this->_texture.loadFromFile(tile->getTexture());
+        // this->_sprite.setTexture(this->_texture);
+        // this->_window->draw(this->_sprite);
+        return;
+    }
 }
 
 arcade::Input Sfml_Arcade::event()

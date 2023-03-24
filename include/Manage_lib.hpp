@@ -7,10 +7,12 @@
 
 #ifndef MANAGE_LIB_HPP_
     #define MANAGE_LIB_HPP_
-
-#include <dlfcn.h>
-#include "DLLoader.hpp"
-#include "Arcade-Architecture/IGraphics.hpp"
+    #include <dlfcn.h>
+    #include "DLLoader.hpp"
+    #include "Arcade-Architecture/IGraphics.hpp"
+    #include "../include/ASound.hpp"
+    #include "../include/ATile.hpp"
+    #include "../include/AText.hpp"
 
 class Manage_lib {
     public:

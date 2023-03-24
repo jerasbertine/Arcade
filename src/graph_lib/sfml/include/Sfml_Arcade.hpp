@@ -24,7 +24,6 @@ class Sfml_Arcade : public arcade::IGraphics {
     private:
         sf::RenderWindow *_window;
         sf::Event _event;
-        sf::VideoMode _mode;
         sf::Texture _texture;
         sf::Sprite _sprite;
 };
