@@ -34,6 +34,7 @@ void Sfml_Arcade::clear()
 
 void Sfml_Arcade::draw(std::shared_ptr<arcade::IObject> object)
 {
+    std::shared_ptr<arcade::ITile> tile = std::dynamic_pointer_cast<arcade::ITile>(object);
 }
 
 arcade::Input Sfml_Arcade::event()
