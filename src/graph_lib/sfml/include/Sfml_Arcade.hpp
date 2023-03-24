@@ -7,17 +7,21 @@
 
 #ifndef SFML_ARCADE_HPP_
     #define SFML_ARCADE_HPP_
-    #define ASSETS_PATH "src/graph_lib/sfml/assets/"
     #include "../../../../include/Arcade-Architecture/IGraphics.hpp"
     #include <SFML/Graphics.hpp>
 
-class Sfml_Arcade : public arcade::IGraphics {
+    #define ASSETS_PATH "src/graph_lib/sfml/assets/"
+
+class SfmlArcade : public arcade::IGraphics {
     public:
-        Sfml_Arcade();
-        ~Sfml_Arcade();
+        SfmlArcade();
+        ~SfmlArcade();
         void display();
         void clear();
         void draw(std::shared_ptr<arcade::IObject> object);
+        void handleTile(std::shared_ptr<arcade::ITile> tile);
+        void handleSound(std::shared_ptr<arcade::ISound> sound);
+        void handleText(std::shared_ptr<arcade::IText> text);
         arcade::Input event();
 
     protected:

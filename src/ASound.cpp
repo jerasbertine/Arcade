@@ -9,6 +9,8 @@
 
 arcade::ASound::ASound()
 {
+    this->_soundPath = "";
+    this->_volume = 0;
 }
 
 arcade::ASound::~ASound()

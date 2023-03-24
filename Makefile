@@ -7,7 +7,7 @@
 
 SRC = 	main.cpp \
 		$(addprefix src/, 	\
-		Manage_lib.cpp	\
+		Arcade.cpp	\
 		Error.cpp	 \
 		ASound.cpp	 \
 		AText.cpp	 \

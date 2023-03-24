@@ -20,8 +20,7 @@ namespace arcade {
             void setText(std::string text);
             void setColorText(arcade::Color color);
             void setPosition(std::pair<std::size_t, std::size_t> position);
-    
-    
+
         protected:
         private:
             std::string _text;

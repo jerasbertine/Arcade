@@ -8,15 +8,15 @@
 LIB_PATH = ../../../lib
 
 SRC = $(addprefix src/,	\
-		Arcade_management.cpp)
+		Sdl2_Arcade.cpp)
 
 NAME = arcade_sdl2.so
 
 CC = g++
 
-CFLAGS = -shared -fPIC
+CFLAGS = -shared -fPIC $(shell sdl2-config --cflags)
 
-CPPFLAGS = -I./include
+CPPFLAGS = -I./include $(shell sdl2-config --libs)
 
 RED         := $(shell tput -Txterm setaf 1)
 

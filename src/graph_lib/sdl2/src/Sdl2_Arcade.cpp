@@ -5,7 +5,7 @@
 ** Menu
 */
 
-#include "../include/Arcade_management.hpp"
+#include "../include/Sdl2_Arcade.hpp"
 
 SdlArcade::SdlArcade()
 {

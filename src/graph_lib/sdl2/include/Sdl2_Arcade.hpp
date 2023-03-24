@@ -5,8 +5,8 @@
 ** Menu
 */
 
-#ifndef ARCADE_MANAGEMENT_HPP_
-    #define ARCADE_MANAGEMENT_HPP_
+#ifndef SDL2_ARCADE_HPP_
+    #define SDL2_ARCADE_HPP_
     #include "../../../../include/Arcade-Architecture/IGraphics.hpp"
 
 class SdlArcade : public arcade::IGraphics {

@@ -7,8 +7,8 @@
 
 LIB_PATH = ../../../lib
 
-SRC = 	main.cpp \
-		$(addprefix src/,)
+SRC = $(addprefix src/,	\
+	Snake.cpp)
 
 NAME = arcade_snake.so
 

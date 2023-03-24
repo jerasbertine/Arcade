@@ -6,7 +6,7 @@
 */
 
 #include <iostream>
-#include "include/Manage_lib.hpp"
+#include "include/Arcade.hpp"
 
 static void usage(void)
 {
@@ -20,11 +20,18 @@ static void usage(void)
 int main(int ac, char **av)
 {
     *av = NULL;
+    std::shared_ptr<Arcade> arcade;
 
     if (ac != 2) {
         usage();
         return 84;
     }
-    check_up(av[1]);
+    try {
+        arcade = std::make_shared<Arcade>(av[1]);
+        arcade->check_up();
+    } catch (const Error &e) {
+        std::cerr << e.what() << e.message() << std::endl;
+        return 84;
+    }
     return 0;
 }

@@ -9,6 +9,9 @@
 
 arcade::AText::AText()
 {
+    this->_text = "";
+    this->_color = (arcade::Color) -1;
+    this->_position = {0, 0};
 }
 
 arcade::AText::~AText()
