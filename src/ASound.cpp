@@ -7,45 +7,47 @@
 
 #include "../include/ASound.hpp"
 
-ASound::ASound()
+arcade::ASound::ASound()
+{
+    this->_soundPath = "";
+    this->_volume = 0;
+}
+
+arcade::ASound::~ASound()
 {
 }
 
-ASound::~ASound()
-{
-}
-
-std::string ASound::getSoundPath() const
+std::string arcade::ASound::getSoundPath() const
 {
     return this->_soundPath;
 }
 
-float ASound::getVolume() const
+float arcade::ASound::getVolume() const
 {
     return this->_volume;
 }
 
-void ASound::setSoundPath(std::string path)
+void arcade::ASound::setSoundPath(std::string path)
 {
     this->_soundPath = path;
 }
 
-void ASound::setVolume(float volume)
+void arcade::ASound::setVolume(float volume)
 {
     this->_volume = volume;
 }
 
-void ASound::pauseSound()
+void arcade::ASound::pauseSound()
 {
     return;
 }
 
-void ASound::playSound()
+void arcade::ASound::playSound()
 {
     return;
 }
 
-void ASound::stopSound()
+void arcade::ASound::stopSound()
 {
     return;
 }

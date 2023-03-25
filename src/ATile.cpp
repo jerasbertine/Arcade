@@ -7,70 +7,70 @@
 
 #include "../include/ATile.hpp"
 
-ATile::ATile()
+arcade::ATile::ATile()
 {
 }
 
-ATile::~ATile()
+arcade::ATile::~ATile()
 {
 }
 
-std::string ATile::getTexture() const
+std::string arcade::ATile::getTexture() const
 {
     return this->_texturePath;
 }
 
-std::pair<float, float> ATile::getPosition() const
+std::pair<float, float> arcade::ATile::getPosition() const
 {
     return this->_position;
 }
 
-char ATile::getCharacter() const
+char arcade::ATile::getCharacter() const
 {
     return this->_char;
 }
 
-arcade::Color ATile::getColor() const
+arcade::Color arcade::ATile::getColor() const
 {
     return this->_color;
 }
 
-std::pair<std::size_t, std::size_t> ATile::getScale() const
+std::pair<std::size_t, std::size_t> arcade::ATile::getScale() const
 {
     return this->_scale;
 }
 
-float ATile::getRotation() const
+float arcade::ATile::getRotation() const
 {
     return this->_rotation;
 }
 
-void ATile::setTexture(std::string path)
+void arcade::ATile::setTexture(std::string path)
 {
     this->_texturePath = path;
 }
 
-void ATile::setPosition(std::pair<std::size_t, std::size_t> position)
+void arcade::ATile::setPosition(std::pair<std::size_t, std::size_t> position)
 {
     this->_position = position;
 }
 
-void ATile::setCharacter(char c)
+void arcade::ATile::setCharacter(char c)
 {
     this->_char = c;
 }
 
-void ATile::setColor(arcade::Color color)
+void arcade::ATile::setColor(arcade::Color color)
 {
     this->_color = color;
 }
 
-void ATile::setScale(std::pair<std::size_t, std::size_t> scale)
+void arcade::ATile::setScale(std::pair<std::size_t, std::size_t> scale)
 {
     this->_scale = scale;
 }
 
-void ATile::setRotation(float rotation)
+void arcade::ATile::setRotation(float rotation)
 {
     this->_rotation = rotation;
 }

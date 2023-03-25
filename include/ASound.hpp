@@ -9,22 +9,24 @@
     #define ASOUND_HPP_
     #include "Arcade-Architecture/IObject.hpp"
 
-class ASound : public arcade::ISound {
-    public:
-        ASound();
-        ~ASound();
-        std::string getSoundPath() const;
-        float getVolume() const;
-        void setSoundPath(std::string path);
-        void setVolume(float volume);
-        void pauseSound();
-        void playSound();
-        void stopSound();
-
-    protected:
-    private:
-        std::string _soundPath;
-        float _volume;
-};
+namespace arcade {
+    class ASound : public arcade::ISound {
+        public:
+            ASound();
+            ~ASound();
+            std::string getSoundPath() const;
+            float getVolume() const;
+            void setSoundPath(std::string path);
+            void setVolume(float volume);
+            void pauseSound();
+            void playSound();
+            void stopSound();
+    
+        protected:
+        private:
+            std::string _soundPath;
+            float _volume;
+    };
+}
 
 #endif /* !ASOUND_HPP_ */

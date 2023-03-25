@@ -12,32 +12,63 @@
 #include <SFML/Config.hpp>
 #include "../include/Sfml_Arcade.hpp"
 
-Sfml_Arcade::Sfml_Arcade()
+SfmlArcade::SfmlArcade()
 {
     this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade SFML!");
 }
 
-Sfml_Arcade::~Sfml_Arcade()
+SfmlArcade::~SfmlArcade()
 {
     delete(this->_window);
 }
 
-void Sfml_Arcade::display()
+void SfmlArcade::display()
 {
     this->_window->display();
 }
 
-void Sfml_Arcade::clear()
+void SfmlArcade::clear()
 {
     this->_window->clear();
 }
 
-void Sfml_Arcade::draw(std::shared_ptr<arcade::IObject> object)
+void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
 {
-    std::shared_ptr<arcade::ITile> tile = std::dynamic_pointer_cast<arcade::ITile>(object);
+    this->_texture.loadFromFile(tile->getTexture());
+    this->_sprite.setTexture(this->_texture);
+    this->_window->draw(this->_sprite);
 }
 
-arcade::Input Sfml_Arcade::event()
+void SfmlArcade::handleSound(std::shared_ptr<arcade::ISound> sound)
+{
+
+}
+
+void SfmlArcade::handleText(std::shared_ptr<arcade::IText> text)
+{
+
+}
+
+void SfmlArcade::draw(std::shared_ptr<arcade::IObject> object)
+{
+    std::shared_ptr<arcade::ITile> tile = std::dynamic_pointer_cast<arcade::ITile>(object);
+    if (tile != nullptr) {
+        handleTile(tile);
+        return;
+    }
+    std::shared_ptr<arcade::ISound> sound = std::dynamic_pointer_cast<arcade::ISound>(object);
+    if (sound != nullptr) {
+        handleSound(sound);
+        return;
+    }
+    std::shared_ptr<arcade::IText> text = std::dynamic_pointer_cast<arcade::IText>(object);
+    if (text != nullptr) {
+        handleText(text);
+        return;
+    }
+}
+
+arcade::Input SfmlArcade::event()
 {
     while (this->_window->pollEvent(this->_event)) {
         if (this->_event.type == sf::Event::Closed) {
@@ -51,6 +82,6 @@ arcade::Input Sfml_Arcade::event()
 extern "C" {
     void *entryPoint()
     {
-        return new Sfml_Arcade();
+        return new SfmlArcade();
     }
 }

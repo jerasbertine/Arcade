@@ -7,40 +7,43 @@
 
 #include "../include/AText.hpp"
 
-AText::AText()
+arcade::AText::AText()
+{
+    this->_text = "";
+    this->_color = (arcade::Color) -1;
+    this->_position = {0, 0};
+}
+
+arcade::AText::~AText()
 {
 }
 
-AText::~AText()
-{
-}
-
-std::string AText::getText() const
+std::string arcade::AText::getText() const
 {
     return this->_text;
 }
 
-arcade::Color AText::getColorText() const
+arcade::Color arcade::AText::getColorText() const
 {
     return this->_color;
 }
 
-std::pair<std::size_t, std::size_t> AText::getPosition() const
+std::pair<std::size_t, std::size_t> arcade::AText::getPosition() const
 {
     return this->_position;
 }
 
-void AText::setText(std::string text)
+void arcade::AText::setText(std::string text)
 {
     this->_text = text;
 }
 
-void AText::setColorText(arcade::Color color)
+void arcade::AText::setColorText(arcade::Color color)
 {
     this->_color = color;
 }
 
-void AText::setPosition(std::pair<std::size_t, std::size_t> position)
+void arcade::AText::setPosition(std::pair<std::size_t, std::size_t> position)
 {
     this->_position = position;
 }
