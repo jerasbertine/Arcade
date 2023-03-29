@@ -21,7 +21,8 @@ class SfmlArcade : public arcade::IGraphics {
         void draw(std::shared_ptr<arcade::IObject> object);
         void handleTile(std::shared_ptr<arcade::ITile> tile);
         void handleSound(std::shared_ptr<arcade::ISound> sound);
-        void handleText(std::shared_ptr<arcade::IText> text);
+        void drawText(arcade::IText *text);
+        void drawSprite(arcade::ITile *tile);
         arcade::Input event();
 
     protected:
@@ -30,6 +31,7 @@ class SfmlArcade : public arcade::IGraphics {
         sf::Event _event;
         sf::Texture _texture;
         sf::Sprite _sprite;
+        sf::Text _text;
 };
 
 #endif /* !SFML_ARCADE_HPP_ */
