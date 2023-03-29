@@ -35,7 +35,7 @@ void Arcade::fillLibVector(std::string lib)
             this->_graphLib[graphDico[i].substr(0, graphDico[i].find(".so"))] = (loadedLib = std::make_shared<DLLoader<arcade::IGraphics>>(lib));
             return;
         }
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 3; ++i)
         if (lib == this->_libDir + "arcade_" + gameDico[i]) {
             std::shared_ptr<DLLoader<arcade::IGames>> loadedLib;
             this->_gameLib[gameDico[i].substr(0, gameDico[i].find(".so"))] = (loadedLib = std::make_shared<DLLoader<arcade::IGames>>(lib));
@@ -46,24 +46,30 @@ void Arcade::fillLibVector(std::string lib)
 
 void Arcade::checkLibPath(std::string path)
 {
-    std::string dico[] = {"arcade_snake.so", "arcade_pacman.so", "arcade_menu.so"};
+    std::string gameDico[] = {"arcade_snake.so", "arcade_pacman.so", "arcade_menu.so"};
+    std::string graphDico[] = {"arcade_sdl2.so", "arcade_sfml.so", "arcade_ncurses.so"};
     if (this->_graphLib.size() == 0)
         throw Error("There's no graphical library loaded.", "Error: ");
     if (this->_gameLib.size() == 0)
         throw Error("There's no game loaded.", "Error: ");
-    for (int i = 0; i < 2; ++i) {
-        if (this->_libDir + dico[i] == path) {
+    for (int i = 0; i < 3; ++i)
+        if (this->_libDir + gameDico[i] == path) {
             this->_selectedGraph = "sfml";
-            this->_selectedGame = dico[i].substr(dico[i].find("_") + 1, dico[i].find(".so"));
+            this->_selectedGame = gameDico[i].substr(gameDico[i].find("_") + 1);
+            this->_selectedGame = this->_selectedGame.substr(0, this->_selectedGame.find(".so"));
             return;
         }
-    }
-
+    for (int i = 0; i < 3; ++i)
+        if (this->_libDir + graphDico[i] == path) {
+            this->_selectedGraph = graphDico[i].substr(graphDico[i].find("_") + 1);
+            this->_selectedGraph = this->_selectedGraph.substr(0, this->_selectedGraph.find(".so"));
+            this->_selectedGame = "menu";
+            return;
+        }
 }
 
 Arcade::~Arcade()
 {
-
 }
 
 void Arcade::check_up()
@@ -72,7 +78,6 @@ void Arcade::check_up()
     std::vector<std::shared_ptr<arcade::IObject>> test;
     std::shared_ptr<arcade::ATile> check = std::make_shared<arcade::ATile>();
     check->setTexture("src/graph_lib/sfml/assets/background.jpg");
-    std::cout << this->_graphLib.size() << this->_selectedGraph <<std::endl;
     while ((state = this->_graphLib[this->_selectedGraph]->getInstance()->event()) != arcade::Input::EXIT) {
         this->_graphLib[this->_selectedGraph]->getInstance()->display();
         this->_graphLib[this->_selectedGraph]->getInstance()->clear();
