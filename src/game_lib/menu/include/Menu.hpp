@@ -12,6 +12,8 @@
     #include "../../../../include/AText.hpp"
     #include "../../../../include/ASound.hpp"
 
+    #define ASSETS_PATH "src/game_lib/menu/assets/"
+
 class Menu : public arcade::IGames {
     public:
         Menu();
@@ -21,7 +23,7 @@ class Menu : public arcade::IGames {
         std::shared_ptr<arcade::ITile> createTile();
         std::shared_ptr<arcade::ISound> createSound();
         std::shared_ptr<arcade::IText> createText();
-        void pushTile();
+        void pushHomeMenu();
         void pushSound();
         void pushText();
 
