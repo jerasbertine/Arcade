@@ -24,6 +24,7 @@ class Arcade {
         void check_up();
         void checkLibPath(std::string path);
         void fillLibVector(std::string lib);
+        void handleChanges(arcade::Input state);
     
     protected:
     private:
