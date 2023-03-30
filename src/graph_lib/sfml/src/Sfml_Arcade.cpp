@@ -50,12 +50,28 @@ void SfmlArcade::handleSound(std::shared_ptr<arcade::ISound> sound)
 
 }
 
+void SfmlArcade::handleText(std::shared_ptr<arcade::IText> text)
+{
+
+}
+
 void SfmlArcade::draw(std::shared_ptr<arcade::IObject> object)
 {
-    if (dynamic_cast<arcade::ITile *>(object.get()) != nullptr)
-        drawSprite(dynamic_cast<arcade::ITile *>(object.get()));
-    if (dynamic_cast<arcade::IText *>(object.get()) != nullptr)
-        drawText(dynamic_cast<arcade::IText *>(object.get()));
+    std::shared_ptr<arcade::ITile> tile = std::dynamic_pointer_cast<arcade::ITile>(object);
+    if (tile != nullptr) {
+        handleTile(tile);
+        return;
+    }
+    std::shared_ptr<arcade::ISound> sound = std::dynamic_pointer_cast<arcade::ISound>(object);
+    if (sound != nullptr) {
+        handleSound(sound);
+        return;
+    }
+    std::shared_ptr<arcade::IText> text = std::dynamic_pointer_cast<arcade::IText>(object);
+    if (text != nullptr) {
+        handleText(text);
+        return;
+    }
 }
 
 void SfmlArcade::drawText(arcade::IText *text)

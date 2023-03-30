@@ -21,6 +21,7 @@ class SfmlArcade : public arcade::IGraphics {
         void draw(std::shared_ptr<arcade::IObject> object);
         void handleTile(std::shared_ptr<arcade::ITile> tile);
         void handleSound(std::shared_ptr<arcade::ISound> sound);
+        void handleText(std::shared_ptr<arcade::IText> text);
         void drawText(arcade::IText *text);
         void drawSprite(arcade::ITile *tile);
         arcade::Input event();
