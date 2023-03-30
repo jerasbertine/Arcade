@@ -30,8 +30,8 @@ class Arcade {
         std::string _selectedGraph;
         std::string _selectedGame;
         std::string _libDir;
-        std::map<std::string ,std::shared_ptr<DLLoader<arcade::IGraphics>>> _graphLib;
-        std::map<std::string ,std::shared_ptr<DLLoader<arcade::IGames>>> _gameLib;
+        std::map<std::string, std::shared_ptr<DLLoader<arcade::IGraphics>>> _graphLib;
+        std::map<std::string, std::shared_ptr<DLLoader<arcade::IGames>>> _gameLib;
     
 };
 

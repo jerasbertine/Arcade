@@ -75,14 +75,11 @@ Arcade::~Arcade()
 void Arcade::check_up()
 {
     arcade::Input state = arcade::Input::UNDEFINED;
-    std::vector<std::shared_ptr<arcade::IObject>> test;
-    std::shared_ptr<arcade::ATile> check = std::make_shared<arcade::ATile>();
-    check->setTexture("src/graph_lib/sfml/assets/background.jpg");
     while ((state = this->_graphLib[this->_selectedGraph]->getInstance()->event()) != arcade::Input::EXIT) {
         this->_graphLib[this->_selectedGraph]->getInstance()->display();
         this->_graphLib[this->_selectedGraph]->getInstance()->clear();
-        for (int i = 0; (std::size_t) i < test.size(); ++i) {
-            this->_graphLib[_selectedGraph]->getInstance()->draw(check);
+        for (int i = 0; (std::size_t) i < this->_gameLib[_selectedGame]->getInstance()->loop(state).size(); ++i) {
+            this->_graphLib[_selectedGraph]->getInstance()->draw(this->_gameLib[_selectedGame]->getInstance()->loop(state).at(i));
         }
     }
 }

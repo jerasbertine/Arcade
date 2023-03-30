@@ -17,11 +17,35 @@ Menu::~Menu()
 
 }
 
+void Menu::pushTile()
+{
+    std::shared_ptr<arcade::ITile> tile = createTile();
+    tile->setTexture("src/graph_lib/sfml/assets/background.jpg");
+    this->_vector.push_back(tile);
+    std::shared_ptr<arcade::ITile> jeras = createTile();
+    jeras->setTexture("src/graph_lib/sfml/assets/jeras.jpg");
+    jeras->setPosition({50, 50});
+    this->_vector.push_back(jeras);
+}
+
+void Menu::pushSound()
+{
+    std::shared_ptr<arcade::ISound> sound = createSound();
+}
+
+void Menu::pushText()
+{
+    std::shared_ptr<arcade::IText> text = createText();
+
+}
+
 std::vector<std::shared_ptr<arcade::IObject>> Menu::loop(arcade::Input input)
 {
-    // TODO loop
-    std::vector<std::shared_ptr<arcade::IObject>> vector;
-    return vector;
+    this->_vector.clear();
+    pushTile();
+    pushSound();
+    pushText();
+    return this->_vector;
 }
 
 void Menu::restart()
@@ -31,23 +55,17 @@ void Menu::restart()
 
 std::shared_ptr<arcade::ITile> Menu::createTile()
 {
-    // TODO createTile
-    std::shared_ptr<arcade::ITile> tile;
-    return tile;
+    return std::make_shared<arcade::ATile>();
 }
 
 std::shared_ptr<arcade::ISound> Menu::createSound()
 {
-    // TODO createSound
-    std::shared_ptr<arcade::ISound> sound;
-    return sound;
+    return std::make_shared<arcade::ASound>();
 }
 
 std::shared_ptr<arcade::IText> Menu::createText()
 {
-    //TODO createText
-    std::shared_ptr<arcade::IText> text;
-    return text;
+    return std::make_shared<arcade::AText>();
 }
 
 extern "C" {

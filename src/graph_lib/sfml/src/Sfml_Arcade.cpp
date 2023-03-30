@@ -34,9 +34,12 @@ void SfmlArcade::clear()
 
 void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
 {
-    this->_texture.loadFromFile(tile->getTexture());
-    this->_sprite.setTexture(this->_texture);
-    this->_window->draw(this->_sprite);
+    sf::Texture texture;
+    sf::Sprite sprite;
+    texture.loadFromFile(tile->getTexture());
+    sprite.setTexture(texture);
+    sprite.setPosition(sf::Vector2f(tile->getPosition().first, tile->getPosition().second));
+    this->_window->draw(sprite);
 }
 
 void SfmlArcade::handleSound(std::shared_ptr<arcade::ISound> sound)

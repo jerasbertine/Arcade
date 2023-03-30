@@ -28,8 +28,6 @@ class SfmlArcade : public arcade::IGraphics {
     private:
         sf::RenderWindow *_window;
         sf::Event _event;
-        sf::Texture _texture;
-        sf::Sprite _sprite;
 };
 
 #endif /* !SFML_ARCADE_HPP_ */
