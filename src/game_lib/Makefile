@@ -28,4 +28,7 @@ fclean:
 	make fclean -C $(SNAKE_PATH)
 	make fclean -C $(MENU_PATH)
 
-.PHONY: all re clean fclean
+debug:
+	make debug -C $(MENU_PATH)
+
+.PHONY: all re clean fclean debug

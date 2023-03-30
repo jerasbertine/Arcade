@@ -54,6 +54,8 @@ $(NAME): $(OBJ)
 
 debug: CFLAGS += -g3
 debug: re
+debug:
+	make debug -C $(GAMES_LIB)
 
 re: fclean all
 
