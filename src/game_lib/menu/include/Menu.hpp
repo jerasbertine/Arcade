@@ -8,6 +8,9 @@
 #ifndef MENU_HPP_
     #define MENU_HPP_
     #include "../../../../include/Arcade-Architecture/IGames.hpp"
+    #include "../../../../include/ATile.hpp"
+    #include "../../../../include/AText.hpp"
+    #include "../../../../include/ASound.hpp"
 
 class Menu : public arcade::IGames {
     public:
@@ -18,9 +21,13 @@ class Menu : public arcade::IGames {
         std::shared_ptr<arcade::ITile> createTile();
         std::shared_ptr<arcade::ISound> createSound();
         std::shared_ptr<arcade::IText> createText();
+        void pushTile();
+        void pushSound();
+        void pushText();
 
     protected:
     private:
+        std::vector<std::shared_ptr<arcade::IObject>> _vector;
 };
 
 #endif /* !MENU_HPP_ */

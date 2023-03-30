@@ -8,7 +8,11 @@
 LIB_PATH = ../../../lib
 
 SRC = $(addprefix src/,	\
-	Menu.cpp)
+	Menu.cpp)	\
+	$(addprefix ../../../src/,	\
+		ATile.cpp	\
+		AText.cpp	\
+		ASound.cpp)
 
 NAME = arcade_menu.so
 
