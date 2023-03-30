@@ -17,15 +17,19 @@ Menu::~Menu()
 
 }
 
-void Menu::pushTile()
+void Menu::pushHomeMenu()
 {
-    std::shared_ptr<arcade::ITile> tile = createTile();
-    tile->setTexture("src/graph_lib/sfml/assets/background.jpg");
-    this->_vector.push_back(tile);
-    std::shared_ptr<arcade::ITile> jeras = createTile();
-    jeras->setTexture("src/graph_lib/sfml/assets/jeras.jpg");
-    jeras->setPosition({50, 50});
-    this->_vector.push_back(jeras);
+    std::shared_ptr<arcade::ITile> texture[3];
+
+    for (int i = 0; i < 2; ++i)
+        texture[i] = createTile();
+    // Background du menu
+    texture[0]->setTexture("src/game_lib/menu/assets/background.jpg");
+    // Panneau contenant le text "Arcade"
+    texture[1]->setTexture("src/game_lib/menu/assets/sign.png");
+    texture[1]->setPosition({460, 100});
+    for (int i = 0; i < 2; ++i)
+        this->_vector.push_back(texture[i]);
 }
 
 void Menu::pushSound()
@@ -42,7 +46,7 @@ void Menu::pushText()
 std::vector<std::shared_ptr<arcade::IObject>> Menu::loop(arcade::Input input)
 {
     this->_vector.clear();
-    pushTile();
+    pushHomeMenu();
     pushSound();
     pushText();
     return this->_vector;
