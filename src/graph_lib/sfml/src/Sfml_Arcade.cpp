@@ -37,11 +37,12 @@ void SfmlArcade::clear()
 
 void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
 {
-    sf::Texture texture;
-    sf::Sprite sprite;
-    texture.loadFromFile(tile->getTexture());
-    sprite.setTexture(texture);
+    sf::RectangleShape sprite;
+    sprite.setFillColor(this->dicolors[tile->getColor()]);
     sprite.setPosition(sf::Vector2f(tile->getPosition().first, tile->getPosition().second));
+    sprite.setRotation(0);
+    sprite.setScale(2,2);
+    sprite.setSize(sf::Vector2f(15,15));
     this->_window->draw(sprite);
 }
 
@@ -52,7 +53,17 @@ void SfmlArcade::handleSound(std::shared_ptr<arcade::ISound> sound)
 
 void SfmlArcade::handleText(std::shared_ptr<arcade::IText> text)
 {
-
+    sf::Text _text;
+    sf::Font _font;
+    _font.loadFromFile("src/game_lib/pac-man/assets/Minecraft.ttf");
+    _text.setFont(_font);
+    _text.setFillColor(this->dicolors[text->getColorText()]);
+    _text.setPosition(sf::Vector2f(text->getPosition().first, text->getPosition().second));
+    _text.setRotation(0);
+    _text.setScale(1, 1);
+    _text.setCharacterSize(55);
+    _text.setString(text->getText());
+    this->_window->draw(_text);
 }
 
 void SfmlArcade::draw(std::shared_ptr<arcade::IObject> object)
@@ -72,27 +83,6 @@ void SfmlArcade::draw(std::shared_ptr<arcade::IObject> object)
         handleText(text);
         return;
     }
-}
-
-void SfmlArcade::drawText(arcade::IText *text)
-{
-    sf::Font font;
-
-    // font.loadFromFile();         in case we have a font
-    // this->_text.setFont(font);    same
-    this->_text.setString(text->getText());
-    this->_text.setCharacterSize(30);
-    this->_text.setFillColor(sf::Color::White);
-    this->_text.setPosition(text->getPosition().first, text->getPosition().second);
-    this->_window->draw(this->_text);
-}
-
-void SfmlArcade::drawSprite(arcade::ITile *tile)
-{
-    this->_texture.loadFromFile(tile->getTexture());
-    this->_sprite.setTexture(this->_texture);
-    this->_sprite.setPosition(tile->getPosition().first, tile->getPosition().second);
-    this->_window->draw(this->_sprite);
 }
 
 arcade::Input SfmlArcade::event()

@@ -22,8 +22,6 @@ class SfmlArcade : public arcade::IGraphics {
         void handleTile(std::shared_ptr<arcade::ITile> tile);
         void handleSound(std::shared_ptr<arcade::ISound> sound);
         void handleText(std::shared_ptr<arcade::IText> text);
-        void drawText(arcade::IText *text);
-        void drawSprite(arcade::ITile *tile);
         arcade::Input event();
 
     protected:
@@ -31,7 +29,14 @@ class SfmlArcade : public arcade::IGraphics {
         sf::RenderWindow *_window;
         sf::Event _event;
         sf::Texture _texture;
-        sf::Sprite _sprite;
+        std::map<arcade::Color, sf::Color> dicolors = {
+            {arcade::Color::BLUE, sf::Color::Blue},
+            {arcade::Color::RED, sf::Color::Red},
+            {arcade::Color::GREEN, sf::Color::Green},
+            {arcade::Color::YELLOW, sf::Color::Yellow},
+            {arcade::Color::WHITE, sf::Color::White},
+            {arcade::Color::DARK, sf::Color::Black},
+        };
         sf::Text _text;
 };
 
