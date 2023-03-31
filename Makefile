@@ -68,6 +68,7 @@ clean:
 
 fclean: clean
 	@rm -f $(NAME)
+	@rm -f *.o
 	@make fclean -s -C $(GAMES_LIB)
 	@make fclean -s -C $(GRAPH_LIB)
 	@echo "$(ORANGE)Removing $(RED)$(NAME) $(RESET)"

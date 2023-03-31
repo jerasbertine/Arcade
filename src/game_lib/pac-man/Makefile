@@ -8,7 +8,11 @@
 LIB_PATH = ../../../lib
 
 SRC = $(addprefix src/,	\
-	PacMan.cpp)
+	PacMan.cpp)		\
+	$(addprefix ../../../src/,	\
+		ATile.cpp	\
+		AText.cpp	\
+		ASound.cpp)
 
 NAME = arcade_pacman.so
 
