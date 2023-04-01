@@ -9,6 +9,11 @@
 
 arcade::ATile::ATile()
 {
+    this->_texturePath = "";
+    this->_position = {0, 0};
+    this->_color = (arcade::Color) -1;
+    this->_scale = {1, 1};
+    this->_rotation = 0;
 }
 
 arcade::ATile::~ATile()
