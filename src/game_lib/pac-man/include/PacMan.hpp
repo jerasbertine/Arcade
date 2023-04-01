@@ -13,6 +13,7 @@
     #include "../../../../include/AText.hpp"
     #include "../../../../include/ASound.hpp"
     #include <fstream>
+    #include <array>
 
 enum Cell
 {
