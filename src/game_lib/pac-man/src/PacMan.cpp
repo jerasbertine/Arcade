@@ -25,16 +25,16 @@ void PacMan::inputEvent(arcade::Input input)
 {
     switch (input) {
         case arcade::Input::UP:
-            std::cout << "UP" << std::endl;
+            this->_direction = 1;
             break;
         case arcade::Input::DOWN:
-            std::cout << "DOWN" << std::endl;
+            this->_direction = 3;
             break;
         case arcade::Input::LEFT:
-            std::cout << "LEFT" << std::endl;
+            this->_direction = 2;
             break;
         case arcade::Input::RIGHT:
-            std::cout << "RIGHT" << std::endl;
+            this->_direction = 0;
             break;
         default:
             break;
@@ -167,18 +167,23 @@ void PacMan::setText()
 void PacMan::setMap()
 {
     setWall();
-    setPacman();
-    setGhost();
     setFood();
     setEnergizer();
+    setGhost();
+    setPacman();
+}
+
+void PacMan::createObject()
+{
+    this->_object.clear();
+    setMap();
+    setText();
 }
 
 std::vector<std::shared_ptr<arcade::IObject>> PacMan::loop(arcade::Input input)
 {
     inputEvent(input);
-    this->_object.clear();
-    setMap();
-    setText();
+    createObject();
     return this->_object;
 }
 

@@ -40,6 +40,7 @@ class PacMan : public arcade::IGames {
         PacMan();
         ~PacMan();
         std::vector<std::shared_ptr<arcade::IObject>> loop(arcade::Input input);
+        void createObject();
         void setMap();
         void setText();
         void setWall();
@@ -63,6 +64,8 @@ class PacMan : public arcade::IGames {
         std::array<Position, 4> _ghostPos;
         std::vector<std::string> _map;
         std::vector<std::shared_ptr<arcade::IObject>> _object;
+        unsigned char _direction = 0;
+        const unsigned int pacmanSpeed = 2;
 };
 
 #endif /* !PACMAN_HPP_ */
