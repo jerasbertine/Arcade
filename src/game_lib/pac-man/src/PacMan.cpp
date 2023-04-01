@@ -68,6 +68,7 @@ void PacMan::setEnergizer()
                 energizer->setColor(arcade::Color::RED);
                 setPosition(j * 30, i * 30);
                 energizer->setPosition({j * 30, i * 30});
+                energizer->setScale({2, 2});
                 this->_object.push_back(energizer);
             }
         }
@@ -83,6 +84,7 @@ void PacMan::setFood()
                 food->setColor(arcade::Color::YELLOW);
                 setPosition(j * 30, i * 30);
                 food->setPosition({j * 30, i * 30});
+                food->setScale({2, 2});
                 this->_object.push_back(food);
             }
         }
@@ -99,6 +101,7 @@ void PacMan::setGhost()
                 this->_ghostPos[0].x = i * 30;
                 ghost1->setColor(arcade::Color::RED);
                 ghost1->setPosition({j * 30, i * 30});
+                ghost1->setScale({2, 2});
                 this->_object.push_back(ghost1);
             }
             if (this->_map[i][j] == '1') {
@@ -107,6 +110,7 @@ void PacMan::setGhost()
                 this->_ghostPos[1].x = i * 30;
                 ghost2->setColor(arcade::Color::YELLOW);
                 ghost2->setPosition({j * 30, i * 30});
+                ghost2->setScale({2, 2});
                 this->_object.push_back(ghost2);
             }
             if (this->_map[i][j] == '2') {
@@ -115,6 +119,7 @@ void PacMan::setGhost()
                 this->_ghostPos[2].x = i * 30;
                 ghost3->setColor(arcade::Color::BLUE);
                 ghost3->setPosition({j * 30, i * 30});
+                ghost3->setScale({2, 2});
                 this->_object.push_back(ghost3);
             }
             if (this->_map[i][j] == '3') {
@@ -123,6 +128,7 @@ void PacMan::setGhost()
                 this->_ghostPos[3].x = i * 30;
                 ghost4->setColor(arcade::Color::GREEN);
                 ghost4->setPosition({j * 30, i * 30});
+                ghost4->setScale({2, 2});
                 this->_object.push_back(ghost4);
             }
         }
@@ -137,6 +143,7 @@ void PacMan::setWall()
                 auto wall = createTile();
                 wall->setColor(arcade::Color::BLUE);
                 wall->setPosition({j * 30, i * 30});
+                wall->setScale({2, 2});
                 this->_object.push_back(wall);
             }
         }
@@ -152,6 +159,7 @@ void PacMan::setPacman()
                 pacman->setColor(arcade::Color::YELLOW);
                 setPosition(j * 30, i * 30);
                 pacman->setPosition({j * 30, i * 30});
+                pacman->setScale({2, 2});
                 this->_object.push_back(pacman);
             }
         }
