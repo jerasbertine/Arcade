@@ -31,12 +31,12 @@ void Arcade::fillLibVector(std::string lib)
 
     for (int i = 0; i < 3; ++i)
         if (lib == this->_libDir + "arcade_" + graphDico[i]) {
-            this->_graphLib[graphDico[i]] = lib;
+            this->_graphLib[graphDico[i].substr(0, graphDico[i].find(".so"))] = lib;
             return;
         }
     for (int i = 0; i < 3; ++i)
         if (lib == this->_libDir + "arcade_" + gameDico[i]) {
-            this->_gameLib[gameDico[i]] = lib;
+            this->_gameLib[gameDico[i].substr(0, gameDico[i].find(".so"))] = lib;
             return;
         }
     throw Error("We don't handle this kind of shared library.", "Error: ");
@@ -75,18 +75,21 @@ void Arcade::handleChanges(arcade::Input state)
     switch (state) {
         case arcade::Input::NEXTGAME:
             this->_selectedGameStr = (this->_selectedGameStr == "snake" ? "pacman" : "snake");
-            delete(this->_selectedGame);
+            this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
             break;
         case arcade::Input::PREVIOUSGAME:
             this->_selectedGameStr = (this->_selectedGameStr == "snake" ? "pacman" : "snake");
+            this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
             break;
         case arcade::Input::NEXTGRAPH:
             this->_selectedGraphStr = (this->_selectedGraphStr == "sfml" ? "sdl2" :
             this->_selectedGraphStr == "sdl2" ? "ncurses" : "sfml");
+            this->_selectedGraph->changeInstance(this->_graphLib[this->_selectedGraphStr]);
             break;
         case arcade::Input::PREVIOUSGRAPH:
             this->_selectedGraphStr = (this->_selectedGraphStr == "sfml" ? "ncurses" :
             this->_selectedGraphStr == "ncurses" ? "sdl2" : "sfml");
+            this->_selectedGraph->changeInstance(this->_graphLib[this->_selectedGraphStr]);
             break;
         default:
             break;
@@ -100,13 +103,11 @@ Arcade::~Arcade()
 void Arcade::check_up()
 {
     arcade::Input state = arcade::Input::UNDEFINED;
-    while ((state = this->_graphLib[this->_selectedGraph]->getInstance()->event()) != arcade::Input::EXIT) {
-        this->_graphLib[this->_selectedGraph]->getInstance()->display();
-        this->_graphLib[this->_selectedGraph]->getInstance()->clear();
-        for (int i = 0; (std::size_t) i < this->_gameLib[_selectedGame]->getInstance()->loop(state).size(); ++i) {
-            this->_graphLib[_selectedGraph]->getInstance()->draw(this->_gameLib[_selectedGame]->getInstance()->loop(state).at(i));
-        }
-        std::cout << this->_selectedGraph << std::endl;
+    while ((state = this->_selectedGraph->getInstance()->event()) != arcade::Input::EXIT) {
+        this->_selectedGraph->getInstance()->display();
+        this->_selectedGraph->getInstance()->clear();
+        for (int i = 0; (std::size_t) i < this->_selectedGame->getInstance()->loop(state).size(); ++i)
+            this->_selectedGraph->getInstance()->draw(this->_selectedGame->getInstance()->loop(state).at(i));
         if (state != arcade::Input::MENU)
             handleChanges(state);
     }
