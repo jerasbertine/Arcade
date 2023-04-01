@@ -66,7 +66,6 @@ void PacMan::setEnergizer()
             if (this->_map[i][j] == 'o') {
                 auto energizer = createTile();
                 energizer->setColor(arcade::Color::RED);
-                setPosition(j * 30, i * 30);
                 energizer->setPosition({j * 30, i * 30});
                 energizer->setScale({2, 2});
                 this->_object.push_back(energizer);
@@ -82,7 +81,6 @@ void PacMan::setFood()
             if (this->_map[i][j] == '.') {
                 auto food = createTile();
                 food->setColor(arcade::Color::YELLOW);
-                setPosition(j * 30, i * 30);
                 food->setPosition({j * 30, i * 30});
                 food->setScale({2, 2});
                 this->_object.push_back(food);
