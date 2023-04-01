@@ -14,6 +14,16 @@ template<typename T>
 class DLLoader {
     public:
         DLLoader(std::string path) {
+            loadInstance(path);
+        };
+        ~DLLoader() {
+            delete _instance;
+            dlclose(_handle);
+        };
+        T *getInstance() const {
+            return _instance;
+        };
+        void loadInstance(std::string path) {
             void *(*instanceCreator)(void);
             this->_handle = dlopen(path.c_str(), RTLD_LAZY | RTLD_GLOBAL);
             if (!this->_handle)
@@ -22,13 +32,11 @@ class DLLoader {
             if (!instanceCreator)
                 std::cout << "Error: " << dlerror() << std::endl;
             this->_instance = (T *) instanceCreator();
-        }
-        ~DLLoader() {
+        };
+        void changeInstance(std::string path) {
             delete _instance;
             dlclose(_handle);
-        };
-        T *getInstance() const {
-            return _instance;
+            loadInstance(path);
         };
 
     protected:

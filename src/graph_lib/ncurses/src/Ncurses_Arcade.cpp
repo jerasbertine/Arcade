@@ -17,12 +17,12 @@ NcursesArcade::~NcursesArcade()
 
 void NcursesArcade::display()
 {
-    std::cout << "Display" << std::endl;
+    std::cout << "Display ncurses" << std::endl;
 }
 
 void NcursesArcade::clear()
 {
-    std::cout << "Refresh" << std::endl;
+    std::cout << "Refresh ncurses" << std::endl;
 }
 
 void NcursesArcade::draw(std::shared_ptr<arcade::IObject> object)

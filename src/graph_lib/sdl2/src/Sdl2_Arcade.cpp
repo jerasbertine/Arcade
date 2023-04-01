@@ -17,12 +17,12 @@ SdlArcade::~SdlArcade()
 
 void SdlArcade::display()
 {
-    std::cout << "Display" << std::endl;
+    std::cout << "Display sdl2" << std::endl;
 }
 
 void SdlArcade::clear()
 {
-    std::cout << "Refresh" << std::endl;
+    std::cout << "Refresh sdl2" << std::endl;
 }
 
 void SdlArcade::draw(std::shared_ptr<arcade::IObject> object)

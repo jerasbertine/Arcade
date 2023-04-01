@@ -24,14 +24,17 @@ class Arcade {
         void check_up();
         void checkLibPath(std::string path);
         void fillLibVector(std::string lib);
+        void handleChanges(arcade::Input state);
     
     protected:
     private:
-        std::string _selectedGraph;
-        std::string _selectedGame;
+        std::shared_ptr<DLLoader<arcade::IGraphics>> _selectedGraph;
+        std::shared_ptr<DLLoader<arcade::IGames>> _selectedGame;
+        std::string _selectedGameStr;
+        std::string _selectedGraphStr;
+        std::map<std::string, std::string> _graphLib;
+        std::map<std::string, std::string> _gameLib;
         std::string _libDir;
-        std::map<std::string, std::shared_ptr<DLLoader<arcade::IGraphics>>> _graphLib;
-        std::map<std::string, std::shared_ptr<DLLoader<arcade::IGames>>> _gameLib;
     
 };
 
