@@ -38,19 +38,24 @@ void SfmlArcade::clear()
 void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
 {
     sf::Texture texture;
-    sf::RectangleShape sprite;
 
     if (tile->getTexture() != "") {
+        sf::Sprite sprite;
         texture.loadFromFile(tile->getTexture());
-        sprite.setTexture(&texture);
-    }
-    if (tile->getColor() != -1)
+        sprite.setTexture(texture);
+        sprite.setPosition(sf::Vector2f(tile->getPosition().first, tile->getPosition().second));
+        sprite.setRotation(tile->getRotation());
+        sprite.setScale(tile->getScale().first, tile->getScale().second);
+        this->_window->draw(sprite);
+    } else {
+        sf::RectangleShape sprite;
         sprite.setFillColor(this->dicolors[tile->getColor()]);
-    sprite.setPosition(sf::Vector2f(tile->getPosition().first, tile->getPosition().second));
-    sprite.setRotation(tile->getRotation());
-    sprite.setScale(tile->getScale().first, tile->getScale().second);
-    sprite.setSize(sf::Vector2f(15,15));
-    this->_window->draw(sprite);
+        sprite.setPosition(sf::Vector2f(tile->getPosition().first, tile->getPosition().second));
+        sprite.setRotation(tile->getRotation());
+        sprite.setScale(tile->getScale().first, tile->getScale().second);
+        sprite.setSize(sf::Vector2f(15,15));
+        this->_window->draw(sprite);
+    }
 }
 
 void SfmlArcade::handleSound(std::shared_ptr<arcade::ISound> sound)
