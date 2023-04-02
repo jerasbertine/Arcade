@@ -43,7 +43,7 @@ void PacMan::inputEvent(arcade::Input input)
 
 void PacMan::setScore()
 {
-    auto score = createText();
+    std::shared_ptr<arcade::IText> score = createText();
     score->setText("Score: ");
     score->setColorText(arcade::Color::WHITE);
     score->setPosition({700, 50});
@@ -52,7 +52,7 @@ void PacMan::setScore()
 
 void PacMan::setLevel()
 {
-    auto level = createText();
+    std::shared_ptr<arcade::IText> level = createText();
     level->setText("Level: ");
     level->setColorText(arcade::Color::WHITE);
     level->setPosition({700, 150});
@@ -64,7 +64,7 @@ void PacMan::setEnergizer()
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == 'o') {
-                auto energizer = createTile();
+                std::shared_ptr<arcade::ITile> energizer = createTile();
                 energizer->setColor(arcade::Color::RED);
                 energizer->setPosition({j * 30, i * 30});
                 energizer->setScale({2, 2});
@@ -79,7 +79,7 @@ void PacMan::setFood()
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == '.') {
-                auto food = createTile();
+                std::shared_ptr<arcade::ITile> food = createTile();
                 food->setColor(arcade::Color::YELLOW);
                 food->setPosition({j * 30, i * 30});
                 food->setScale({2, 2});
@@ -94,7 +94,7 @@ void PacMan::setGhost()
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == '0') {
-                auto ghost1 = createTile();
+                std::shared_ptr<arcade::ITile> ghost1 = createTile();
                 this->_ghostPos[0].x = j * 30;
                 this->_ghostPos[0].x = i * 30;
                 ghost1->setColor(arcade::Color::RED);
@@ -103,7 +103,7 @@ void PacMan::setGhost()
                 this->_object.push_back(ghost1);
             }
             if (this->_map[i][j] == '1') {
-                auto ghost2 = createTile();
+                std::shared_ptr<arcade::ITile> ghost2 = createTile();
                 this->_ghostPos[1].x = j * 30;
                 this->_ghostPos[1].x = i * 30;
                 ghost2->setColor(arcade::Color::YELLOW);
@@ -112,7 +112,7 @@ void PacMan::setGhost()
                 this->_object.push_back(ghost2);
             }
             if (this->_map[i][j] == '2') {
-                auto ghost3 = createTile();
+                std::shared_ptr<arcade::ITile> ghost3 = createTile();
                 this->_ghostPos[2].x = j * 30;
                 this->_ghostPos[2].x = i * 30;
                 ghost3->setColor(arcade::Color::BLUE);
@@ -121,7 +121,7 @@ void PacMan::setGhost()
                 this->_object.push_back(ghost3);
             }
             if (this->_map[i][j] == '3') {
-                auto ghost4 = createTile();
+                std::shared_ptr<arcade::ITile> ghost4 = createTile();
                 this->_ghostPos[3].x = j * 30;
                 this->_ghostPos[3].x = i * 30;
                 ghost4->setColor(arcade::Color::GREEN);
@@ -138,7 +138,7 @@ void PacMan::setWall()
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == '#') {
-                auto wall = createTile();
+                std::shared_ptr<arcade::ITile> wall = createTile();
                 wall->setColor(arcade::Color::BLUE);
                 wall->setPosition({j * 30, i * 30});
                 wall->setScale({2, 2});
@@ -153,7 +153,7 @@ void PacMan::setPacman()
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == 'P') {
-                auto pacman = createTile();
+                std::shared_ptr<arcade::ITile> pacman = createTile();
                 pacman->setColor(arcade::Color::YELLOW);
                 setPosition(j * 30, i * 30);
                 pacman->setPosition({j * 30, i * 30});
