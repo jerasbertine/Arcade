@@ -15,7 +15,7 @@
 SfmlArcade::SfmlArcade()
 {
     this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade SFML!");
-    this->_window->setFramerateLimit(60);
+    this->_window->setFramerateLimit(10);
 }
 
 SfmlArcade::~SfmlArcade()

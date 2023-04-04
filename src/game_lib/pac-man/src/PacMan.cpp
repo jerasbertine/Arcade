@@ -10,41 +10,92 @@
 PacMan::PacMan()
 {
     this->initMap(MAPPATH);
+    getPacmanPos();
 }
 
-void PacMan::setPosition(short i_x, short i_y)
+void PacMan::getPacmanPos()
 {
-	this->_pacmanPos = {i_x, i_y};
+    for (int i = 0; i < 21; i++) {
+        for (int j = 0; j < 21; j++) {
+            if (this->_map[i][j] == 'P') {
+                this->_pos.first = i * 30;
+                this->_pos.second = j * 30;
+            }
+        }
+    }
+}
+
+void PacMan::setPacmanPosition(int x, int y)
+{
+    this->_pos.first = x;
+    this->_pos.second = y;
 }
 
 PacMan::~PacMan()
 {
 }
 
-void PacMan::inputEvent(arcade::Input input)
+void PacMan::checkCollision()
 {
-    switch (input) {
-        case arcade::Input::UP:
-            std::cout << "UP" << std::endl;
+    if (this->_map[this->_pos.first / 30][this->_pos.second / 30] == '.') {
+        this->_score += 10;
+        this->_map[this->_pos.first / 30][this->_pos.second / 30] = ' ';
+    }
+    if (this->_map[this->_pos.first / 30][this->_pos.second / 30] == 'o') {
+        this->_score += 50;
+        this->_map[this->_pos.first / 30][this->_pos.second / 30] = ' ';
+    }
+}
+
+void PacMan::movePacman()
+{
+    switch (this->_direction) {
+        case Up:
+            if (this->_map[(this->_pos.first - 30) / 30][this->_pos.second / 30] != '#')
+                this->_pos.first -= 30;
             break;
-        case arcade::Input::DOWN:
-            std::cout << "DOWN" << std::endl;
+        case Down:
+            if (this->_map[(this->_pos.first + 30) / 30][this->_pos.second / 30] != '#')
+                this->_pos.first += 30;
             break;
-        case arcade::Input::LEFT:
-            std::cout << "LEFT" << std::endl;
+        case Left:
+            if (this->_map[this->_pos.first / 30][(this->_pos.second - 30) / 30] != '#')
+                this->_pos.second -= 30;
             break;
-        case arcade::Input::RIGHT:
-            std::cout << "RIGHT" << std::endl;
+        case Right:
+            if (this->_map[this->_pos.first / 30][(this->_pos.second + 30) / 30] != '#')
+                this->_pos.second += 30;
             break;
         default:
             break;
     }
 }
 
+void PacMan::inputEvent(arcade::Input input)
+{
+    switch (input) {
+        case arcade::Input::UP:
+            this->_direction = Up;
+            break;
+        case arcade::Input::DOWN:
+            this->_direction = Down;
+            break;
+        case arcade::Input::LEFT:
+            this->_direction = Left;
+            break;
+        case arcade::Input::RIGHT:
+            this->_direction = Right;
+            break;
+        default:
+            break;
+    }
+    checkCollision();
+}
+
 void PacMan::setScore()
 {
     std::shared_ptr<arcade::IText> score = createText();
-    score->setText("Score: ");
+    score->setText("Score: " + std::to_string(this->_score));
     score->setColorText(arcade::Color::WHITE);
     score->setPosition({700, 50});
     this->_object.push_back(score);
@@ -66,7 +117,6 @@ void PacMan::setEnergizer()
             if (this->_map[i][j] == 'o') {
                 std::shared_ptr<arcade::ITile> energizer = createTile();
                 energizer->setColor(arcade::Color::RED);
-                setPosition(j * 30, i * 30);
                 energizer->setPosition({j * 30, i * 30});
                 energizer->setScale({2, 2});
                 this->_object.push_back(energizer);
@@ -82,7 +132,6 @@ void PacMan::setFood()
             if (this->_map[i][j] == '.') {
                 std::shared_ptr<arcade::ITile> food = createTile();
                 food->setColor(arcade::Color::YELLOW);
-                setPosition(j * 30, i * 30);
                 food->setPosition({j * 30, i * 30});
                 food->setScale({2, 2});
                 this->_object.push_back(food);
@@ -108,7 +157,7 @@ void PacMan::setGhost()
                 std::shared_ptr<arcade::ITile> ghost2 = createTile();
                 this->_ghostPos[1].x = j * 30;
                 this->_ghostPos[1].x = i * 30;
-                ghost2->setColor(arcade::Color::YELLOW);
+                ghost2->setColor(arcade::Color::RED);
                 ghost2->setPosition({j * 30, i * 30});
                 ghost2->setScale({2, 2});
                 this->_object.push_back(ghost2);
@@ -117,7 +166,7 @@ void PacMan::setGhost()
                 std::shared_ptr<arcade::ITile> ghost3 = createTile();
                 this->_ghostPos[2].x = j * 30;
                 this->_ghostPos[2].x = i * 30;
-                ghost3->setColor(arcade::Color::BLUE);
+                ghost3->setColor(arcade::Color::RED);
                 ghost3->setPosition({j * 30, i * 30});
                 ghost3->setScale({2, 2});
                 this->_object.push_back(ghost3);
@@ -126,7 +175,7 @@ void PacMan::setGhost()
                 std::shared_ptr<arcade::ITile> ghost4 = createTile();
                 this->_ghostPos[3].x = j * 30;
                 this->_ghostPos[3].x = i * 30;
-                ghost4->setColor(arcade::Color::GREEN);
+                ghost4->setColor(arcade::Color::RED);
                 ghost4->setPosition({j * 30, i * 30});
                 ghost4->setScale({2, 2});
                 this->_object.push_back(ghost4);
@@ -150,20 +199,15 @@ void PacMan::setWall()
     }
 }
 
-void PacMan::setPacman()
+void PacMan::setPacmanTile()
 {
-    for (int i = 0; i < 21; i++) {
-        for (int j = 0; j < 21; j++) {
-            if (this->_map[i][j] == 'P') {
-                std::shared_ptr<arcade::ITile> pacman = createTile();
-                pacman->setColor(arcade::Color::YELLOW);
-                setPosition(j * 30, i * 30);
-                pacman->setPosition({j * 30, i * 30});
-                pacman->setScale({2, 2});
-                this->_object.push_back(pacman);
-            }
-        }
-    }
+    std::shared_ptr<arcade::ITile> pacman = createTile();
+    pacman->setCharacter('P');
+    pacman->setColor(arcade::Color::WHITE);
+    pacman->setPosition({this->_pos.second, this->_pos.first});
+    pacman->setScale({2, 2});
+    pacman->setRotation(0);
+    this->_object.push_back(pacman);
 }
 
 void PacMan::setText()
@@ -172,21 +216,32 @@ void PacMan::setText()
     setLevel();
 }
 
-void PacMan::setMap()
+void PacMan::setMapTile()
 {
     setWall();
-    setPacman();
-    setGhost();
     setFood();
     setEnergizer();
+    setGhost();
+    setPacmanTile();
+}
+
+void PacMan::createObject()
+{
+    this->_object.clear();
+    setMapTile();
+    setText();
+}
+
+void PacMan::gameLoop()
+{
+    movePacman();
 }
 
 std::vector<std::shared_ptr<arcade::IObject>> PacMan::loop(arcade::Input input)
 {
     inputEvent(input);
-    this->_object.clear();
-    setMap();
-    setText();
+    gameLoop();
+    createObject();
     return this->_object;
 }
 
