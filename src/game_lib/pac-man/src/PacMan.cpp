@@ -116,7 +116,7 @@ void PacMan::setEnergizer()
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == 'o') {
                 std::shared_ptr<arcade::ITile> energizer = createTile();
-                energizer->setColor(arcade::Color::RED);
+                energizer->setColor(arcade::Color::GREEN);
                 energizer->setPosition({j * 30, i * 30});
                 energizer->setScale({2, 2});
                 this->_object.push_back(energizer);
