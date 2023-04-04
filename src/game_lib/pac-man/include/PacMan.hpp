@@ -24,6 +24,14 @@ enum Cell
 	Wall
 };
 
+enum Direction
+{
+    Up = 1,
+    Left,
+    Down,
+    Right
+};
+
 struct Position
 {
 	short x;
@@ -41,31 +49,36 @@ class PacMan : public arcade::IGames {
         ~PacMan();
         std::vector<std::shared_ptr<arcade::IObject>> loop(arcade::Input input);
         void createObject();
-        void setMap();
+        void getPacmanPos();
+        void setMapTile();
         void setText();
         void setWall();
-        void setPacman();
+        void setPacmanTile();
         void setGhost();
         void setFood();
         void setEnergizer();
         void setScore();
         void setLevel();
         void restart();
+        void gameLoop();
+        void movePacman();
+        void checkCollision();
         void initMap(std::string path);
         void inputEvent(arcade::Input input);
-        void setPosition(short i_x, short i_y);
+        void setPacmanPosition(int x, int y);
         std::shared_ptr<arcade::ITile> createTile();
         std::shared_ptr<arcade::ISound> createSound();
         std::shared_ptr<arcade::IText> createText();
 
     protected:
     private:
-        Position _pacmanPos;
         std::array<Position, 4> _ghostPos;
+        std::pair<int, int> _pos;
         std::vector<std::string> _map;
         std::vector<std::shared_ptr<arcade::IObject>> _object;
-        unsigned char _direction = 0;
-        const unsigned int pacmanSpeed = 2;
+        int _direction = 4;
+        int _score = 0;
+        int _pacmanSpeed = 15;
 };
 
 #endif /* !PACMAN_HPP_ */
