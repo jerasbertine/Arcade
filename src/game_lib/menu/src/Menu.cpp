@@ -115,13 +115,13 @@ int Menu::handleEvent(arcade::Input input, int selected)
         case arcade::Input::UP:
             --selected;
             break;
-        case arcade::Input::LEFT:
-            this->_state = HOME;
-            break;
         case arcade::Input::RIGHT:
             this->_state = this->_state == HOME ? this->_selectedOption == 0 ? GAME : CREDITS : this->_state;
             if (this->_state == GAME)
                 this->_selectedGame == 0 ? switchToSnake() : switchToPacMan();
+            break;
+        case arcade::Input::LEFT:
+            this->_state = HOME;
             break;
         default:
             break;

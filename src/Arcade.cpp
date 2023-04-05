@@ -70,16 +70,18 @@ void Arcade::checkLibPath(std::string path)
 
 void Arcade::handleChanges(arcade::Input state)
 {
-    std::string lib = "";
-
     switch (state) {
         case arcade::Input::NEXTGAME:
-            this->_selectedGameStr = (this->_selectedGameStr == "snake" ? "pacman" : "snake");
-            this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            if (this->_selectedGameStr != "menu") {
+                this->_selectedGameStr = (this->_selectedGameStr == "snake" ? "pacman" : "snake");
+                this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            }
             break;
         case arcade::Input::PREVIOUSGAME:
-            this->_selectedGameStr = (this->_selectedGameStr == "snake" ? "pacman" : "snake");
-            this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            if (this->_selectedGameStr != "menu") {
+                this->_selectedGameStr = (this->_selectedGameStr == "snake" ? "pacman" : "snake");
+                this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            }
             break;
         case arcade::Input::NEXTGRAPH:
             this->_selectedGraphStr = (this->_selectedGraphStr == "sfml" ? "sdl2" :
@@ -96,23 +98,38 @@ void Arcade::handleChanges(arcade::Input state)
     }
 }
 
+void Arcade::menuChanges(arcade::Input state)
+{
+    switch (state) {
+        case arcade::Input::NEXTGAME:
+            this->_selectedGameStr = "snake";
+            this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            break;
+        case arcade::Input::PREVIOUSGAME:
+            this->_selectedGameStr = "pacman";
+            this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            break;
+        default:
+            break;
+    }
+}
+
 Arcade::~Arcade()
 {
 }
 
 void Arcade::check_up()
 {
-    std::vector<std::shared_ptr<arcade::IObject>> vector;
     arcade::Input state = arcade::Input::UNDEFINED;
     while ((state = this->_selectedGraph->getInstance()->event()) != arcade::Input::EXIT) {
-        this->_selectedGraph->getInstance()->display();
+        std::vector<std::shared_ptr<arcade::IObject>> vector;
         this->_selectedGraph->getInstance()->clear();
         vector = this->_selectedGame->getInstance()->loop(state);
         for (int i = 0; (std::size_t) i < vector.size(); ++i) {
             this->_selectedGraph->getInstance()->draw(vector.at(i));
-            
         }
-        if (this->_selectedGameStr != "menu")
-            handleChanges(state);
+        this->_selectedGraph->getInstance()->display();
+        handleChanges(state);
+        // menuChanges(state);
     }
 }
