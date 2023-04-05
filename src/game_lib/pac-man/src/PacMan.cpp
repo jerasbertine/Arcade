@@ -15,7 +15,7 @@ PacMan::PacMan()
 
 void PacMan::getPacmanPos()
 {
-    for (int i = 0; i < 21; i++) {
+ n    for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == 'P') {
                 this->_pos.first = i * 30;

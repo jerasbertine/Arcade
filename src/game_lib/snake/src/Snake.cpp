@@ -7,81 +7,142 @@
 
 #include "../include/Snake.hpp"
 
-Snake::Snake()
+Snake::Snake(int height, int width, int speed)
 {
-    this->initMap(MAPPATH);
+    construct(height, width, speed);
+    gameOver = false;
+    apple = NULL;
+    score = 0;
+    srand(time(NULL));
+
+    snakePiece.setDirection(DOWN);
+    handlePiece(SnakeBody(1, 1));
+    handlePiece(snakePiece.nextHead());
+    handlePiece(snakePiece.nextHead());
+    snakePiece.setDirection(RIGHT);
+    handlePiece(snakePiece.nextHead());
+
+    if (apple == NULL)
+        createApple();
 }
 
-Snake::~Snake()
+void Snake::processInput()
 {
+    int input = wgetch(mapBorder);
 
-}
-
-void Snake::inputEvent(arcade::Input input)
-{
     switch (input) {
-        case arcade::Input::UP:
-            std::cout << "up" << std::endl;
-            break;
-        case arcade::Input::DOWN:
-            std::cout << "down" << std::endl;
-            break;
-        case arcade::Input::LEFT:
-            std::cout << "left" << std::endl;
-            break;
-        case arcade::Input::RIGHT:
-            std::cout << "right" << std::endl;
-            break;
-        default:
-            break;
+    case 'w':
+        snakePiece.setDirection(UP);
+        break;
+    case 's':
+        snakePiece.setDirection(DOWN);
+        break;
+    case 'a':
+        snakePiece.setDirection(LEFT);
+        break;
+    case 'd':
+        snakePiece.setDirection(RIGHT);
+        break;
+    case 'p':
+        setTimeout(-1);
+        while (wgetch(mapBorder) != 'p');
+        setTimeout(timeout);
+        break;
+    case 27:
+        endwin();
+        exit(0);
     }
 }
 
-void Snake::setSnake()
+void Snake::updateState()
 {
-    std::shared_ptr<arcade::ITile> snake = createTile();
-    snake->setColor(arcade::Color::GREEN);
-    snake->setPosition({300, 300});
-    snake->setScale({2, 2});
-    this->_object.push_back(snake);
+    handlePiece(snakePiece.nextHead());
+
+    if (apple == NULL)
+        createApple();
 }
 
-void Snake::setScore()
+bool Snake::isOver()
 {
-    std::shared_ptr<arcade::IText> text = createText();
-    text->setColorText(arcade::Color::WHITE);
-    text->setPosition({700, 50});
-    text->setText("Score: " + std::to_string(this->_score));
-    this->_object.push_back(text);
+    return gameOver;
 }
 
-void Snake::setText()
+void Snake::construct(int height, int width, int speed)
 {
-    setScore();
+    this->height = height;
+    this->width = width;
+    mapBorder = newwin(height, width, 0, 0);
+    timeout = speed;
+    setTimeout(speed);
+    wclear(mapBorder);
+    box(mapBorder, 0, 0);
+    wrefresh(mapBorder);
 }
 
-void Snake::setMapTile()
+void Snake::add(Draw draw)
 {
-    for (int i = 0; i < 30; i++) {
-        for (int j = 0; j < 20; j++) {
-            if (this->_map[i][j] == '#') {
-                std::shared_ptr<arcade::ITile> wall = createTile();
-                wall->setColor(arcade::Color::WHITE);
-                wall->setPosition({j * 30, i * 30});
-                wall->setScale({2, 2});
-                this->_object.push_back(wall);
-            }
+    addAt(draw.getY(), draw.getX(), draw.getChar());
+}
+
+void Snake::addAt(int y, int x, char c)
+{
+    mvwaddch(mapBorder, y, x, c);
+}
+
+void Snake::getEmptyCood(int &y, int &x)
+{
+    while ((mvwinch(mapBorder, y = rand() % height, x = rand() % width)) != ' ');
+}
+
+void Snake::setTimeout(int timeout)
+{
+    wtimeout(mapBorder, timeout);
+}
+
+void Snake::createApple()
+{
+    int x;
+    int y;
+
+    getEmptyCood(y, x);
+    apple = new Apple(y, x);
+    add(*apple);
+}
+
+void Snake::handlePiece(SnakeBody next)
+{
+    int emptyRow;
+    int emptyCol;
+
+    if (apple != NULL) {
+        switch (mvwinch(mapBorder, next.getY(), next.getX())) {
+        case '@':
+            delete apple;
+            apple = NULL;
+            score += 100;
+            break;
+        case ' ': {
+            emptyRow = snakePiece.tall().getY();
+            emptyCol = snakePiece.tall().getX();
+            add(Empty(emptyRow, emptyCol));
+            snakePiece.removePiece();
+            break;
+        }
+        default:
+            gameOver = true;
+            break;
         }
     }
+
+    add(next);
+    snakePiece.addPiece(next);
 }
 
-void Snake::createObject()
+void Snake::scoreValue(int MaxY, int MaxX)
 {
-    this->_object.clear();
-    setMapTile();
-    setText();
-    setSnake();
+    mvprintw(MaxY / 3, MaxX - 30, "Score : %d", score);
 }
+
 
 std::vector<std::shared_ptr<arcade::IObject>> Snake::loop(arcade::Input input)
 {
