@@ -25,7 +25,7 @@ class Arcade {
         void checkLibPath(std::string path);
         void fillLibVector(std::string lib);
         void handleChanges(arcade::Input state);
-        void menuChanges(std::shared_ptr<arcade::IObject> vector);
+        void menuChanges(arcade::Input state);
     
     protected:
     private:
