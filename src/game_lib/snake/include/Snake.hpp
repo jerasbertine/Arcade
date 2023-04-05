@@ -7,20 +7,35 @@
 
 #ifndef SNAKE_HPP_
     #define SNAKE_HPP_
+    #define MAPPATH "src/game_lib/snake/assets/map.txt"
     #include "../../../../include/Arcade-Architecture/IGames.hpp"
+    #include "../../../../include/ATile.hpp"
+    #include "../../../../include/AText.hpp"
+    #include "../../../../include/ASound.hpp"
+    #include <fstream>
 
 class Snake : public arcade::IGames {
     public:
         Snake();
         ~Snake();
         std::vector<std::shared_ptr<arcade::IObject>> loop(arcade::Input input);
+        void createObject();
+        void setMapTile();
+        void setText();
+        void setScore();
+        void setSnake();
         void restart();
+        void inputEvent(arcade::Input input);
+        void initMap(std::string path);
         std::shared_ptr<arcade::ITile> createTile();
         std::shared_ptr<arcade::ISound> createSound();
         std::shared_ptr<arcade::IText> createText();
 
     protected:
     private:
+        std::vector<std::string> _map;
+        std::vector<std::shared_ptr<arcade::IObject>> _object;
+        int _score = 0;
 };
 
 #endif /* !SNAKE_HPP_ */
