@@ -16,6 +16,7 @@ SfmlArcade::SfmlArcade()
 {
     this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade SFML!");
     this->_window->setFramerateLimit(10);
+    this->game = "";
 }
 
 SfmlArcade::~SfmlArcade()
@@ -40,6 +41,10 @@ void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
     sf::Texture texture;
 
     if (tile->getTexture() != "") {
+        if (tile->getTexture() == "snakeGame" || tile->getTexture() == "pacmanGame") {
+            this->game = tile->getTexture().substr(0, tile->getTexture().find("Game"));
+            return;
+        }
         sf::Sprite sprite;
         texture.loadFromFile(tile->getTexture());
         sprite.setTexture(texture);
@@ -106,25 +111,30 @@ arcade::Input SfmlArcade::event()
             event = arcade::EXIT;
         if (this->_event.type == sf::Event::KeyPressed) {
             if (this->_event.key.code == sf::Keyboard::Up)
-                event = arcade::UP;
+                event = arcade::Input::UP;
             if (this->_event.key.code == sf::Keyboard::Right)
-                event = arcade::RIGHT;
+                event = arcade::Input::RIGHT;
             if (this->_event.key.code == sf::Keyboard::Down)
-                event = arcade::DOWN;
+                event = arcade::Input::DOWN;
             if (this->_event.key.code == sf::Keyboard::Left)
-                event = arcade::LEFT;
+                event = arcade::Input::LEFT;
             if (this->_event.key.code == sf::Keyboard::B)
-                event = arcade::PREVIOUSGAME;
+                event = arcade::Input::PREVIOUSGAME;
             if (this->_event.key.code == sf::Keyboard::N)
-                event = arcade::NEXTGAME;
+                event = arcade::Input::NEXTGAME;
             if (this->_event.key.code == sf::Keyboard::G)
-                event = arcade::PREVIOUSGRAPH;
+                event = arcade::Input::PREVIOUSGRAPH;
             if (this->_event.key.code == sf::Keyboard::H)
-                event = arcade::NEXTGRAPH;
+                event = arcade::Input::NEXTGRAPH;
             if (this->_event.key.code == sf::Keyboard::Escape)
-                event = arcade::EXIT;
+                event = arcade::Input::EXIT;
         }
     }
+    if (this->game == "snake")
+        event = arcade::Input::NEXTGAME;
+    if (this->game == "pacman")
+        event = arcade::Input::PREVIOUSGAME;
+    this->game = "";
     return event;
 }
 

@@ -10,6 +10,7 @@
 
 #include <dlfcn.h>
 #include <iostream>
+#include "Error.hpp"
 template<typename T>
 class DLLoader {
     public:
@@ -27,10 +28,10 @@ class DLLoader {
             void *(*instanceCreator)(void);
             this->_handle = dlopen(path.c_str(), RTLD_LAZY | RTLD_GLOBAL);
             if (!this->_handle)
-                std::cout << "Error: " << dlerror() << std::endl;
+                throw Error(dlerror(), "Error: ");
             instanceCreator = (void* (*)()) dlsym(this->_handle, "entryPoint");
             if (!instanceCreator)
-                std::cout << "Error: " << dlerror() << std::endl;
+                throw Error(dlerror(), "Error: ");
             this->_instance = (T *) instanceCreator();
         };
         void changeInstance(std::string path) {
