@@ -78,6 +78,7 @@ class PacMan : public arcade::IGames {
         std::vector<std::shared_ptr<arcade::IObject>> _object;
         int _direction = 4;
         int _score = 0;
+        int _level = 1;
         int _pacmanSpeed = 15;
 };
 

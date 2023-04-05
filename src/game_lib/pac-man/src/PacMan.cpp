@@ -118,7 +118,6 @@ void PacMan::setEnergizer()
                 std::shared_ptr<arcade::ITile> energizer = createTile();
                 energizer->setColor(arcade::Color::GREEN);
                 energizer->setPosition({j * 30, i * 30});
-                energizer->setScale({2, 2});
                 this->_object.push_back(energizer);
             }
         }
@@ -133,7 +132,6 @@ void PacMan::setFood()
                 std::shared_ptr<arcade::ITile> food = createTile();
                 food->setColor(arcade::Color::YELLOW);
                 food->setPosition({j * 30, i * 30});
-                food->setScale({2, 2});
                 this->_object.push_back(food);
             }
         }
@@ -150,7 +148,6 @@ void PacMan::setGhost()
                 this->_ghostPos[0].x = i * 30;
                 ghost1->setColor(arcade::Color::RED);
                 ghost1->setPosition({j * 30, i * 30});
-                ghost1->setScale({2, 2});
                 this->_object.push_back(ghost1);
             }
             if (this->_map[i][j] == '1') {
@@ -159,7 +156,6 @@ void PacMan::setGhost()
                 this->_ghostPos[1].x = i * 30;
                 ghost2->setColor(arcade::Color::RED);
                 ghost2->setPosition({j * 30, i * 30});
-                ghost2->setScale({2, 2});
                 this->_object.push_back(ghost2);
             }
             if (this->_map[i][j] == '2') {
@@ -168,7 +164,6 @@ void PacMan::setGhost()
                 this->_ghostPos[2].x = i * 30;
                 ghost3->setColor(arcade::Color::RED);
                 ghost3->setPosition({j * 30, i * 30});
-                ghost3->setScale({2, 2});
                 this->_object.push_back(ghost3);
             }
             if (this->_map[i][j] == '3') {
@@ -177,7 +172,6 @@ void PacMan::setGhost()
                 this->_ghostPos[3].x = i * 30;
                 ghost4->setColor(arcade::Color::RED);
                 ghost4->setPosition({j * 30, i * 30});
-                ghost4->setScale({2, 2});
                 this->_object.push_back(ghost4);
             }
         }
@@ -192,7 +186,6 @@ void PacMan::setWall()
                 std::shared_ptr<arcade::ITile> wall = createTile();
                 wall->setColor(arcade::Color::BLUE);
                 wall->setPosition({j * 30, i * 30});
-                wall->setScale({2, 2});
                 this->_object.push_back(wall);
             }
         }
@@ -205,7 +198,6 @@ void PacMan::setPacmanTile()
     pacman->setCharacter('P');
     pacman->setColor(arcade::Color::WHITE);
     pacman->setPosition({this->_pos.second, this->_pos.first});
-    pacman->setScale({2, 2});
     pacman->setRotation(0);
     this->_object.push_back(pacman);
 }

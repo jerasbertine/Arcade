@@ -52,7 +52,7 @@ void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
         sprite.setFillColor(this->dicolors[tile->getColor()]);
         sprite.setPosition(sf::Vector2f(tile->getPosition().first, tile->getPosition().second));
         sprite.setRotation(tile->getRotation());
-        sprite.setScale(tile->getScale().first, tile->getScale().second);
+        sprite.setScale(2, 2);
         sprite.setSize(sf::Vector2f(15,15));
         this->_window->draw(sprite);
     }
