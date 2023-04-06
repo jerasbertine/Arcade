@@ -101,11 +101,11 @@ void Arcade::handleChanges(arcade::Input state)
 void Arcade::menuChanges(arcade::Input state)
 {
     switch (state) {
-        case arcade::Input::NEXTGAME:
+        case arcade::Input::RESTART:
             this->_selectedGameStr = "snake";
             this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
             break;
-        case arcade::Input::PREVIOUSGAME:
+        case arcade::Input::ACTION1:
             this->_selectedGameStr = "pacman";
             this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
             break;
@@ -124,12 +124,13 @@ void Arcade::check_up()
     while ((state = this->_selectedGraph->getInstance()->event()) != arcade::Input::EXIT) {
         std::vector<std::shared_ptr<arcade::IObject>> vector;
         this->_selectedGraph->getInstance()->clear();
+        vector.clear();
         vector = this->_selectedGame->getInstance()->loop(state);
-        for (int i = 0; (std::size_t) i < vector.size(); ++i) {
+        for (int i = 0; (std::size_t) i < vector.size(); ++i)
             this->_selectedGraph->getInstance()->draw(vector.at(i));
-        }
         this->_selectedGraph->getInstance()->display();
         handleChanges(state);
-        // menuChanges(state);
+        if (this->_selectedGameStr == "menu")
+            menuChanges(state);
     }
 }

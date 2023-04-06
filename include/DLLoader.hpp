@@ -35,7 +35,7 @@ class DLLoader {
             this->_instance = (T *) instanceCreator();
         };
         void changeInstance(std::string path) {
-            delete _instance;
+            // delete _instance;
             dlclose(_handle);
             loadInstance(path);
         };

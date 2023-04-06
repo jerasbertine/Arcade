@@ -16,7 +16,7 @@ SfmlArcade::SfmlArcade()
 {
     this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade SFML!");
     this->_window->setFramerateLimit(10);
-    this->game = "";
+    this->_game = "";
 }
 
 SfmlArcade::~SfmlArcade()
@@ -42,7 +42,7 @@ void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
 
     if (tile->getTexture() != "") {
         if (tile->getTexture() == "snakeGame" || tile->getTexture() == "pacmanGame") {
-            this->game = tile->getTexture().substr(0, tile->getTexture().find("Game"));
+            this->_game = tile->getTexture().substr(0, tile->getTexture().find("Game"));
             return;
         }
         sf::Sprite sprite;
@@ -107,8 +107,10 @@ arcade::Input SfmlArcade::event()
     arcade::Input event = arcade::Input::UNDEFINED;
 
     while (this->_window->pollEvent(this->_event)) {
-        if (this->_event.type == sf::Event::Closed)
+        if (this->_event.type == sf::Event::Closed) {
             event = arcade::EXIT;
+            this->_window->close();
+        }
         if (this->_event.type == sf::Event::KeyPressed) {
             if (this->_event.key.code == sf::Keyboard::Up)
                 event = arcade::Input::UP;
@@ -122,19 +124,23 @@ arcade::Input SfmlArcade::event()
                 event = arcade::Input::PREVIOUSGAME;
             if (this->_event.key.code == sf::Keyboard::N)
                 event = arcade::Input::NEXTGAME;
-            if (this->_event.key.code == sf::Keyboard::G)
+            if (this->_event.key.code == sf::Keyboard::G) {
                 event = arcade::Input::PREVIOUSGRAPH;
-            if (this->_event.key.code == sf::Keyboard::H)
+                this->_window->close();
+            }
+            if (this->_event.key.code == sf::Keyboard::H) {
                 event = arcade::Input::NEXTGRAPH;
+                this->_window->close();
+            }
             if (this->_event.key.code == sf::Keyboard::Escape)
                 event = arcade::Input::EXIT;
         }
     }
-    if (this->game == "snake")
-        event = arcade::Input::NEXTGAME;
-    if (this->game == "pacman")
-        event = arcade::Input::PREVIOUSGAME;
-    this->game = "";
+    if (this->_game == "snake")
+        event = arcade::Input::RESTART;
+    if (this->_game == "pacman")
+        event = arcade::Input::ACTION1;
+    this->_game = "";
     return event;
 }
 
