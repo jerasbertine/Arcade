@@ -21,6 +21,8 @@ Arcade::Arcade(std::string path)
         if (lib.find("arcade_") != std::string::npos)
             fillLibVector(lib);
     }
+    if (std::filesystem::exists(path) == false)
+        throw Error("File doesn't exist", "Error: ");
     checkLibPath(path);
 }
 
