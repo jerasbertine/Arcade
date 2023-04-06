@@ -8,15 +8,19 @@
 LIB_PATH = ../../../lib
 
 SRC = $(addprefix src/,	\
-		Sdl2_Arcade.cpp)
+		Sdl2_Arcade.cpp)	\
+	$(addprefix ../../../src/,	\
+		Error.cpp)
 
 NAME = arcade_sdl2.so
 
 CC = g++
 
-CFLAGS = -shared -fPIC $(shell sdl2-config --cflags)
+LDFLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
 
-CPPFLAGS = -I./include $(shell sdl2-config --libs)
+CFLAGS = -shared -fPIC `sdl2-config --cflags --libs`
+
+CPPFLAGS = -I./include
 
 RED         := $(shell tput -Txterm setaf 1)
 
@@ -32,13 +36,15 @@ ORANGE		:=	$(shell printf "\e[38;5;208m")
 
 RESET 		:= $(shell tput -Txterm sgr0)
 
+.PHONY: all re clean fclean
+
 all: $(NAME)
 	@echo "$(BLUE)Move [ $(RED)$(NAME) $(BLUE) -> $(PURPLE) $(LIB_PATH) $(BLUE) ]$(RESET)"
 	@mv ./$(NAME) $(LIB_PATH)/$(NAME)
 
 $(NAME):
 	@echo "$(BLUE)Linking [ $(GREEN)$(subst $(BUILD_DIR)//,,$(SRC)) $(BLUE) -> $(RED) $@ $(BLUE) ]"
-	@$(CC) -o $(NAME) $(SRC) $(CFLAGS)
+	@$(CC) -o $(NAME) $(SRC) $(CFLAGS) $(LDFLAGS)
 
 debug: CFLAGS += -g3
 debug: re
@@ -50,5 +56,3 @@ clean:
 
 fclean:
 	@rm -f $(LIB_PATH)/$(NAME)
-
-.PHONY: all re clean fclean

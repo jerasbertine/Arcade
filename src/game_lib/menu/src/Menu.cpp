@@ -16,7 +16,7 @@ Menu::Menu()
 
 Menu::~Menu()
 {
-
+    this->_vector.clear();
 }
 
 void Menu::pushHomeMenu()
@@ -108,6 +108,8 @@ void Menu::switchToPacMan()
 
 int Menu::handleEvent(arcade::Input input, int selected)
 {
+    if (input == arcade::Input::RIGHT && this->_state == GAME)
+        this->_selectedGame == 0 ? switchToSnake() : switchToPacMan();
     switch (input) {
         case arcade::Input::DOWN:
             ++selected;
@@ -115,13 +117,11 @@ int Menu::handleEvent(arcade::Input input, int selected)
         case arcade::Input::UP:
             --selected;
             break;
-        case arcade::Input::RIGHT:
-            this->_state = this->_state == HOME ? this->_selectedOption == 0 ? GAME : CREDITS : this->_state;
-            if (this->_state == GAME)
-                this->_selectedGame == 0 ? switchToSnake() : switchToPacMan();
-            break;
         case arcade::Input::LEFT:
             this->_state = HOME;
+            break;
+        case arcade::Input::RIGHT:
+            this->_state = this->_state == HOME ? this->_selectedOption == 0 ? GAME : CREDITS : this->_state;
             break;
         default:
             break;

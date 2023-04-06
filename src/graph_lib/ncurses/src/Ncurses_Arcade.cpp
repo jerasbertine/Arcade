@@ -31,7 +31,7 @@ void NcursesArcade::draw(std::shared_ptr<arcade::IObject> object)
 
 arcade::Input NcursesArcade::event()
 {
-    return arcade::Input::ACTION1;
+    return arcade::Input::PREVIOUSGRAPH;
 }
 
 extern "C" {

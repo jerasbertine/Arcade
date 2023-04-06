@@ -38,7 +38,7 @@ class SfmlArcade : public arcade::IGraphics {
             {arcade::Color::DARK, sf::Color::Black},
         };
         sf::Text _text;
-        std::string game;
+        std::string _game;
 };
 
 #endif /* !SFML_ARCADE_HPP_ */
