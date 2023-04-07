@@ -125,6 +125,22 @@ void Snake::snakeMoveBody()
     }
 }
 
+void Snake::checkCollision()
+{
+    if (this->_snakePos[0].first < 0 || this->_snakePos[0].first > 29 || this->_snakePos[0].second < 0 || this->_snakePos[0].second > 19) {
+        restart();
+    }
+    for (int i = 1; i < this->_snakePos.size(); i++) {
+        if (this->_snakePos[0].first == this->_snakePos[i].first && this->_snakePos[0].second == this->_snakePos[i].second) {
+            restart();
+        }
+    }
+
+    if (this->_map[this->_snakePos[0].first][this->_snakePos[0].second] == '#') {
+        restart();
+    }
+}
+
 void Snake::snakeMove()
 {
     snakeMoveBody();
@@ -144,6 +160,7 @@ void Snake::snakeMove()
         default:
             break;
     }
+    checkCollision();
 }
 
 void Snake::gameLoop()
@@ -161,7 +178,10 @@ std::vector<std::shared_ptr<arcade::IObject>> Snake::loop(arcade::Input input)
 
 void Snake::restart()
 {
-    return;
+    this->_snakePos.clear();
+    getSnakePos();
+    this->_direction = Right;
+    this->_score = 0;
 }
 
 void Snake::initMap(std::string path)
