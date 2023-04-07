@@ -55,7 +55,7 @@ void SfmlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
     } else {
         sf::RectangleShape sprite;
         sprite.setFillColor(this->dicolors[tile->getColor()]);
-        sprite.setPosition(sf::Vector2f(tile->getPosition().first, tile->getPosition().second));
+        sprite.setPosition(sf::Vector2f((tile->getPosition().first) * 30, (tile->getPosition().second) * 30));
         sprite.setRotation(tile->getRotation());
         sprite.setScale(2, 2);
         sprite.setSize(sf::Vector2f(15,15));

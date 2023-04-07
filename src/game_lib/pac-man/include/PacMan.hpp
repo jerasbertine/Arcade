@@ -79,7 +79,7 @@ class PacMan : public arcade::IGames {
         int _direction = 4;
         int _score = 0;
         int _level = 1;
-        int _pacmanSpeed = 15;
+        int _pacmanSpeed = 1;
 };
 
 #endif /* !PACMAN_HPP_ */
