@@ -123,6 +123,7 @@ arcade::Input SdlArcade::event()
 {
     arcade::Input event = arcade::Input::UNDEFINED;
 
+    SDL_Delay(100);
     while (SDL_PollEvent(&this->_event)) {
         if (this->_event.type == SDL_QUIT) {
             event = arcade::Input::EXIT;
