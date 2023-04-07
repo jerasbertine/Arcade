@@ -14,6 +14,14 @@
     #include "../../../../include/ASound.hpp"
     #include <fstream>
 
+enum Direction
+{
+    Up = 1,
+    Left,
+    Down,
+    Right
+};
+
 class Snake : public arcade::IGames {
     public:
         Snake();
@@ -24,7 +32,11 @@ class Snake : public arcade::IGames {
         void setText();
         void setScore();
         void setSnake();
+        void getSnakePos();
         void restart();
+        void gameLoop();
+        void snakeMove();
+        void snakeMoveBody();
         void inputEvent(arcade::Input input);
         void initMap(std::string path);
         std::shared_ptr<arcade::ITile> createTile();
@@ -34,8 +46,10 @@ class Snake : public arcade::IGames {
     protected:
     private:
         std::vector<std::string> _map;
+        std::vector<std::pair<int, int>> _snakePos;
         std::vector<std::shared_ptr<arcade::IObject>> _object;
         int _score = 0;
+        int _direction = 4;
 };
 
 #endif /* !SNAKE_HPP_ */
