@@ -67,8 +67,8 @@ void SdlArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
         SDL_DestroyTexture(texture);
     } else {
         SDL_SetRenderDrawColor(this->_renderer, color.r, color.g, color.b, color.a);
-        rect.x = tile->getPosition().first;
-        rect.y = tile->getPosition().second;
+        rect.x = tile->getPosition().first * 30;
+        rect.y = tile->getPosition().second * 30;
         rect.w = 30;
         rect.h = 30;
         SDL_RenderDrawRect(this->_renderer, &rect);
