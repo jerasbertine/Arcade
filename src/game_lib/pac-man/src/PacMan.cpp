@@ -18,8 +18,8 @@ void PacMan::getPacmanPos()
     for (int i = 0; i < 21; i++) {
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == 'P') {
-                this->_pos.first = i * 30;
-                this->_pos.second = j * 30;
+                this->_pos.first = i;
+                this->_pos.second = j;
             }
         }
     }
@@ -37,13 +37,13 @@ PacMan::~PacMan()
 
 void PacMan::checkCollision()
 {
-    if (this->_map[this->_pos.first / 30][this->_pos.second / 30] == '.') {
+    if (this->_map[this->_pos.first][this->_pos.second] == '.') {
         this->_score += 10;
-        this->_map[this->_pos.first / 30][this->_pos.second / 30] = ' ';
+        this->_map[this->_pos.first][this->_pos.second] = ' ';
     }
-    if (this->_map[this->_pos.first / 30][this->_pos.second / 30] == 'o') {
+    if (this->_map[this->_pos.first][this->_pos.second] == 'o') {
         this->_score += 50;
-        this->_map[this->_pos.first / 30][this->_pos.second / 30] = ' ';
+        this->_map[this->_pos.first][this->_pos.second] = ' ';
     }
 }
 
@@ -51,20 +51,20 @@ void PacMan::movePacman()
 {
     switch (this->_direction) {
         case Up:
-            if (this->_map[(this->_pos.first - 30) / 30][this->_pos.second / 30] != '#')
-                this->_pos.first -= 30;
+            if (this->_map[this->_pos.first - 1][this->_pos.second] != '#')
+                setPacmanPosition(this->_pos.first - this->_pacmanSpeed, this->_pos.second);
             break;
         case Down:
-            if (this->_map[(this->_pos.first + 30) / 30][this->_pos.second / 30] != '#')
-                this->_pos.first += 30;
+            if (this->_map[this->_pos.first + 1][this->_pos.second] != '#')
+                setPacmanPosition(this->_pos.first + this->_pacmanSpeed, this->_pos.second);
             break;
         case Left:
-            if (this->_map[this->_pos.first / 30][(this->_pos.second - 30) / 30] != '#')
-                this->_pos.second -= 30;
+            if (this->_map[this->_pos.first][this->_pos.second - 1] != '#')
+                setPacmanPosition(this->_pos.first, this->_pos.second - this->_pacmanSpeed);
             break;
         case Right:
-            if (this->_map[this->_pos.first / 30][(this->_pos.second + 30) / 30] != '#')
-                this->_pos.second += 30;
+            if (this->_map[this->_pos.first][this->_pos.second + 1] != '#')
+                setPacmanPosition(this->_pos.first, this->_pos.second + this->_pacmanSpeed);
             break;
         default:
             break;
@@ -117,7 +117,7 @@ void PacMan::setEnergizer()
             if (this->_map[i][j] == 'o') {
                 std::shared_ptr<arcade::ITile> energizer = createTile();
                 energizer->setColor(arcade::Color::GREEN);
-                energizer->setPosition({j * 30, i * 30});
+                energizer->setPosition({j, i});
                 this->_object.push_back(energizer);
             }
         }
@@ -131,7 +131,7 @@ void PacMan::setFood()
             if (this->_map[i][j] == '.') {
                 std::shared_ptr<arcade::ITile> food = createTile();
                 food->setColor(arcade::Color::YELLOW);
-                food->setPosition({j * 30, i * 30});
+                food->setPosition({j, i});
                 this->_object.push_back(food);
             }
         }
@@ -144,34 +144,34 @@ void PacMan::setGhost()
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == '0') {
                 std::shared_ptr<arcade::ITile> ghost1 = createTile();
-                this->_ghostPos[0].x = j * 30;
-                this->_ghostPos[0].x = i * 30;
+                this->_ghostPos[0].x = j;
+                this->_ghostPos[0].x = i;
                 ghost1->setColor(arcade::Color::RED);
-                ghost1->setPosition({j * 30, i * 30});
+                ghost1->setPosition({j, i});
                 this->_object.push_back(ghost1);
             }
             if (this->_map[i][j] == '1') {
                 std::shared_ptr<arcade::ITile> ghost2 = createTile();
-                this->_ghostPos[1].x = j * 30;
-                this->_ghostPos[1].x = i * 30;
+                this->_ghostPos[1].x = j;
+                this->_ghostPos[1].x = i;
                 ghost2->setColor(arcade::Color::RED);
-                ghost2->setPosition({j * 30, i * 30});
+                ghost2->setPosition({j, i});
                 this->_object.push_back(ghost2);
             }
             if (this->_map[i][j] == '2') {
                 std::shared_ptr<arcade::ITile> ghost3 = createTile();
-                this->_ghostPos[2].x = j * 30;
-                this->_ghostPos[2].x = i * 30;
+                this->_ghostPos[2].x = j;
+                this->_ghostPos[2].x = i;
                 ghost3->setColor(arcade::Color::RED);
-                ghost3->setPosition({j * 30, i * 30});
+                ghost3->setPosition({j, i});
                 this->_object.push_back(ghost3);
             }
             if (this->_map[i][j] == '3') {
                 std::shared_ptr<arcade::ITile> ghost4 = createTile();
-                this->_ghostPos[3].x = j * 30;
-                this->_ghostPos[3].x = i * 30;
+                this->_ghostPos[3].x = j;
+                this->_ghostPos[3].x = i;
                 ghost4->setColor(arcade::Color::RED);
-                ghost4->setPosition({j * 30, i * 30});
+                ghost4->setPosition({j, i});
                 this->_object.push_back(ghost4);
             }
         }
@@ -185,7 +185,7 @@ void PacMan::setWall()
             if (this->_map[i][j] == '#') {
                 std::shared_ptr<arcade::ITile> wall = createTile();
                 wall->setColor(arcade::Color::BLUE);
-                wall->setPosition({j * 30, i * 30});
+                wall->setPosition({j, i});
                 this->_object.push_back(wall);
             }
         }
