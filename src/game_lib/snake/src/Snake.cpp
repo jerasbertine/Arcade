@@ -10,6 +10,20 @@
 Snake::Snake()
 {
     this->initMap(MAPPATH);
+    getSnakePos();
+}
+
+void Snake::getSnakePos()
+{
+    for (int i = 0; i < 30; i++) {
+        for (int j = 0; j < 20; j++) {
+            if (this->_map[i][j] == 'S') {
+                this->_snakePos.push_back({i, j});
+                this->_snakePos.push_back({i, j - 1});
+                this->_snakePos.push_back({i, j - 2});
+            }
+        }
+    }
 }
 
 Snake::~Snake()
@@ -21,29 +35,20 @@ void Snake::inputEvent(arcade::Input input)
 {
     switch (input) {
         case arcade::Input::UP:
-            std::cout << "up" << std::endl;
+            this->_direction = Up;
             break;
         case arcade::Input::DOWN:
-            std::cout << "down" << std::endl;
+            this->_direction = Down;
             break;
         case arcade::Input::LEFT:
-            std::cout << "left" << std::endl;
+            this->_direction = Left;
             break;
         case arcade::Input::RIGHT:
-            std::cout << "right" << std::endl;
+            this->_direction = Right;
             break;
         default:
             break;
     }
-}
-
-void Snake::setSnake()
-{
-    std::shared_ptr<arcade::ITile> snake = createTile();
-    snake->setColor(arcade::Color::GREEN);
-    snake->setPosition({300, 300});
-    snake->setScale({2, 2});
-    this->_object.push_back(snake);
 }
 
 void Snake::setScore()
@@ -53,6 +58,35 @@ void Snake::setScore()
     text->setPosition({700, 50});
     text->setText("Score: " + std::to_string(this->_score));
     this->_object.push_back(text);
+}
+
+void Snake::setSnake()
+{
+    std::shared_ptr<arcade::ITile> head = createTile();
+    head->setColor(arcade::Color::GREEN);
+    head->setPosition({this->_snakePos[0].second, this->_snakePos[0].first});
+    head->setScale({2, 2});
+    this->_object.push_back(head);
+
+    std::shared_ptr<arcade::ITile> body = createTile();
+    body->setColor(arcade::Color::GREEN);
+    body->setPosition({this->_snakePos[1].second, this->_snakePos[1].first});
+    body->setScale({2, 2});
+    this->_object.push_back(body);
+
+    std::shared_ptr<arcade::ITile> queue = createTile();
+    queue->setColor(arcade::Color::GREEN);
+    queue->setPosition({this->_snakePos[2].second, this->_snakePos[2].first});
+    queue->setScale({2, 2});
+    this->_object.push_back(queue);
+
+    // for (int i = 1; i < this->_snakePos.size(); i++) {
+    //     std::shared_ptr<arcade::ITile> body = createTile();
+    //     body->setColor(arcade::Color::GREEN);
+    //     body->setPosition({this->_snakePos[i].second, this->_snakePos[i].first});
+    //     body->setScale({2, 2});
+    //     this->_object.push_back(body);
+    // }
 }
 
 void Snake::setText()
@@ -67,7 +101,7 @@ void Snake::setMapTile()
             if (this->_map[i][j] == '#') {
                 std::shared_ptr<arcade::ITile> wall = createTile();
                 wall->setColor(arcade::Color::WHITE);
-                wall->setPosition({j * 30, i * 30});
+                wall->setPosition({j, i});
                 wall->setScale({2, 2});
                 this->_object.push_back(wall);
             }
@@ -83,9 +117,44 @@ void Snake::createObject()
     setSnake();
 }
 
+void Snake::snakeMoveBody()
+{
+    for (int i = this->_snakePos.size(); i > 0; i--) {
+        this->_snakePos[i].first = this->_snakePos[i - 1].first;
+        this->_snakePos[i].second = this->_snakePos[i - 1].second;
+    }
+}
+
+void Snake::snakeMove()
+{
+    snakeMoveBody();
+    switch (this->_direction) {
+        case Up:
+            this->_snakePos[0].first -= 1;
+            break;
+        case Down:
+            this->_snakePos[0].first += 1;
+            break;
+        case Left:
+            this->_snakePos[0].second -= 1;
+            break;
+        case Right:
+            this->_snakePos[0].second += 1;
+            break;
+        default:
+            break;
+    }
+}
+
+void Snake::gameLoop()
+{
+    snakeMove();
+}
+
 std::vector<std::shared_ptr<arcade::IObject>> Snake::loop(arcade::Input input)
 {
     inputEvent(input);
+    gameLoop();
     createObject();
     return this->_object;
 }
