@@ -11,6 +11,7 @@ Snake::Snake()
 {
     this->initMap(MAPPATH);
     getSnakePos();
+    setFood();
 }
 
 void Snake::getSnakePos()
@@ -80,13 +81,13 @@ void Snake::setSnake()
     queue->setScale({2, 2});
     this->_object.push_back(queue);
 
-    // for (int i = 1; i < this->_snakePos.size(); i++) {
-    //     std::shared_ptr<arcade::ITile> body = createTile();
-    //     body->setColor(arcade::Color::GREEN);
-    //     body->setPosition({this->_snakePos[i].second, this->_snakePos[i].first});
-    //     body->setScale({2, 2});
-    //     this->_object.push_back(body);
-    // }
+    for (int i = 1; i < this->_snakePos.size(); i++) {
+        std::shared_ptr<arcade::ITile> body = createTile();
+        body->setColor(arcade::Color::GREEN);
+        body->setPosition({this->_snakePos[i].second, this->_snakePos[i].first});
+        body->setScale({2, 2});
+        this->_object.push_back(body);
+    }
 }
 
 void Snake::setText()
@@ -109,12 +110,27 @@ void Snake::setMapTile()
     }
 }
 
+void Snake::createFood()
+{
+    for (int i = 0; i < 30; i++) {
+        for (int j = 0; j < 20; j++) {
+            if (this->_map[i][j] == 'F') {
+                std::shared_ptr<arcade::ITile> food = createTile();
+                food->setColor(arcade::Color::RED);
+                food->setPosition({j, i});
+                this->_object.push_back(food);
+            }
+        }
+    }
+}
+
 void Snake::createObject()
 {
     this->_object.clear();
     setMapTile();
     setText();
     setSnake();
+    createFood();
 }
 
 void Snake::snakeMoveBody()
@@ -141,8 +157,36 @@ void Snake::checkCollision()
     }
 }
 
+void Snake::setFood()
+{
+    int x = rand() % 30;
+    int y = rand() % 20;
+
+    if (this->_map[x][y] == '#') {
+        setFood();
+    } else {
+        this->_map[x][y] = 'F';
+    }
+}
+
+void Snake::addCellSnake()
+{
+    this->_snakePos.push_back({this->_snakePos[this->_snakePos.size() - 1].first, this->_snakePos[this->_snakePos.size() - 1].second});
+}
+
+void Snake::checkFood()
+{
+    if (this->_map[this->_snakePos[0].first][this->_snakePos[0].second] == 'F') {
+        this->_map[this->_snakePos[0].first][this->_snakePos[0].second] = ' ';
+        this->_score += 1;
+        setFood();
+        addCellSnake();
+    }
+}
+
 void Snake::snakeMove()
 {
+    checkFood();
     snakeMoveBody();
     switch (this->_direction) {
         case Up:
