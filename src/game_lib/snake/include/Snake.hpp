@@ -38,6 +38,10 @@ class Snake : public arcade::IGames {
         void snakeMove();
         void snakeMoveBody();
         void checkCollision();
+        void setFood();
+        void checkFood();
+        void createFood();
+        void addCellSnake();
         void inputEvent(arcade::Input input);
         void initMap(std::string path);
         std::shared_ptr<arcade::ITile> createTile();
