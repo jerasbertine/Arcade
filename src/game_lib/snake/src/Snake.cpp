@@ -36,16 +36,20 @@ void Snake::inputEvent(arcade::Input input)
 {
     switch (input) {
         case arcade::Input::UP:
-            this->_direction = Up;
+            if (this->_direction != Down)
+                this->_direction = Up;
             break;
         case arcade::Input::DOWN:
-            this->_direction = Down;
+            if (this->_direction != Up)
+                this->_direction = Down;
             break;
         case arcade::Input::LEFT:
-            this->_direction = Left;
+            if (this->_direction != Right)
+                this->_direction = Left;
             break;
         case arcade::Input::RIGHT:
-            this->_direction = Right;
+            if (this->_direction != Left)
+                this->_direction = Right;
             break;
         default:
             break;
@@ -66,26 +70,22 @@ void Snake::setSnake()
     std::shared_ptr<arcade::ITile> head = createTile();
     head->setColor(arcade::Color::GREEN);
     head->setPosition({this->_snakePos[0].second, this->_snakePos[0].first});
-    head->setScale({2, 2});
     this->_object.push_back(head);
 
     std::shared_ptr<arcade::ITile> body = createTile();
     body->setColor(arcade::Color::GREEN);
     body->setPosition({this->_snakePos[1].second, this->_snakePos[1].first});
-    body->setScale({2, 2});
     this->_object.push_back(body);
 
     std::shared_ptr<arcade::ITile> queue = createTile();
     queue->setColor(arcade::Color::GREEN);
     queue->setPosition({this->_snakePos[2].second, this->_snakePos[2].first});
-    queue->setScale({2, 2});
     this->_object.push_back(queue);
 
     for (int i = 1; i < this->_snakePos.size(); i++) {
         std::shared_ptr<arcade::ITile> body = createTile();
         body->setColor(arcade::Color::GREEN);
         body->setPosition({this->_snakePos[i].second, this->_snakePos[i].first});
-        body->setScale({2, 2});
         this->_object.push_back(body);
     }
 }
@@ -103,7 +103,6 @@ void Snake::setMapTile()
                 std::shared_ptr<arcade::ITile> wall = createTile();
                 wall->setColor(arcade::Color::WHITE);
                 wall->setPosition({j, i});
-                wall->setScale({2, 2});
                 this->_object.push_back(wall);
             }
         }
@@ -190,16 +189,20 @@ void Snake::snakeMove()
     snakeMoveBody();
     switch (this->_direction) {
         case Up:
-            this->_snakePos[0].first -= 1;
+            if (this->_direction == Up)
+                this->_snakePos[0].first -= 1;
             break;
         case Down:
-            this->_snakePos[0].first += 1;
+            if (this->_direction == Down)
+                this->_snakePos[0].first += 1;
             break;
         case Left:
-            this->_snakePos[0].second -= 1;
+            if (this->_direction == Left)
+                this->_snakePos[0].second -= 1;
             break;
         case Right:
-            this->_snakePos[0].second += 1;
+            if (this->_direction == Right)
+                this->_snakePos[0].second += 1;
             break;
         default:
             break;
