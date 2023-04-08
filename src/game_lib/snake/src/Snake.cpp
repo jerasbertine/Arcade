@@ -22,6 +22,7 @@ void Snake::getSnakePos()
                 this->_snakePos.push_back({i, j});
                 this->_snakePos.push_back({i, j - 1});
                 this->_snakePos.push_back({i, j - 2});
+                this->_snakePos.push_back({i, j - 3});
             }
         }
     }
@@ -72,14 +73,19 @@ void Snake::setSnake()
     head->setPosition({this->_snakePos[0].second, this->_snakePos[0].first});
     this->_object.push_back(head);
 
-    std::shared_ptr<arcade::ITile> body = createTile();
-    body->setColor(arcade::Color::GREEN);
-    body->setPosition({this->_snakePos[1].second, this->_snakePos[1].first});
-    this->_object.push_back(body);
+    std::shared_ptr<arcade::ITile> body1 = createTile();
+    body1->setColor(arcade::Color::GREEN);
+    body1->setPosition({this->_snakePos[1].second, this->_snakePos[1].first});
+    this->_object.push_back(body1);
+
+    std::shared_ptr<arcade::ITile> body2 = createTile();
+    body2->setColor(arcade::Color::GREEN);
+    body2->setPosition({this->_snakePos[2].second, this->_snakePos[2].first});
+    this->_object.push_back(body2);
 
     std::shared_ptr<arcade::ITile> queue = createTile();
     queue->setColor(arcade::Color::GREEN);
-    queue->setPosition({this->_snakePos[2].second, this->_snakePos[2].first});
+    queue->setPosition({this->_snakePos[3].second, this->_snakePos[3].first});
     this->_object.push_back(queue);
 
     for (int i = 1; i < this->_snakePos.size(); i++) {
