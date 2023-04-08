@@ -116,6 +116,7 @@ void PacMan::setEnergizer()
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == 'o') {
                 std::shared_ptr<arcade::ITile> energizer = createTile();
+                energizer->setCharacter('o');
                 energizer->setColor(arcade::Color::GREEN);
                 energizer->setPosition({j, i});
                 this->_object.push_back(energizer);
@@ -130,6 +131,7 @@ void PacMan::setFood()
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == '.') {
                 std::shared_ptr<arcade::ITile> food = createTile();
+                food->setCharacter('.');
                 food->setColor(arcade::Color::YELLOW);
                 food->setPosition({j, i});
                 this->_object.push_back(food);
@@ -144,6 +146,7 @@ void PacMan::setGhost()
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == '0') {
                 std::shared_ptr<arcade::ITile> ghost1 = createTile();
+                ghost1->setCharacter('G');
                 this->_ghostPos[0].x = j;
                 this->_ghostPos[0].x = i;
                 ghost1->setColor(arcade::Color::RED);
@@ -152,6 +155,7 @@ void PacMan::setGhost()
             }
             if (this->_map[i][j] == '1') {
                 std::shared_ptr<arcade::ITile> ghost2 = createTile();
+                ghost2->setCharacter('G');
                 this->_ghostPos[1].x = j;
                 this->_ghostPos[1].x = i;
                 ghost2->setColor(arcade::Color::RED);
@@ -160,6 +164,7 @@ void PacMan::setGhost()
             }
             if (this->_map[i][j] == '2') {
                 std::shared_ptr<arcade::ITile> ghost3 = createTile();
+                ghost3->setCharacter('G');
                 this->_ghostPos[2].x = j;
                 this->_ghostPos[2].x = i;
                 ghost3->setColor(arcade::Color::RED);
@@ -168,6 +173,7 @@ void PacMan::setGhost()
             }
             if (this->_map[i][j] == '3') {
                 std::shared_ptr<arcade::ITile> ghost4 = createTile();
+                ghost4->setCharacter('G');
                 this->_ghostPos[3].x = j;
                 this->_ghostPos[3].x = i;
                 ghost4->setColor(arcade::Color::RED);
@@ -184,6 +190,7 @@ void PacMan::setWall()
         for (int j = 0; j < 21; j++) {
             if (this->_map[i][j] == '#') {
                 std::shared_ptr<arcade::ITile> wall = createTile();
+                wall->setCharacter('#');
                 wall->setColor(arcade::Color::BLUE);
                 wall->setPosition({j, i});
                 this->_object.push_back(wall);

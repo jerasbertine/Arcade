@@ -69,21 +69,25 @@ void Snake::setScore()
 void Snake::setSnake()
 {
     std::shared_ptr<arcade::ITile> head = createTile();
+    head->setCharacter('@');
     head->setColor(arcade::Color::GREEN);
     head->setPosition({this->_snakePos[0].second, this->_snakePos[0].first});
     this->_object.push_back(head);
 
     std::shared_ptr<arcade::ITile> body1 = createTile();
+    body1->setCharacter('@');
     body1->setColor(arcade::Color::GREEN);
     body1->setPosition({this->_snakePos[1].second, this->_snakePos[1].first});
     this->_object.push_back(body1);
 
     std::shared_ptr<arcade::ITile> body2 = createTile();
+    body2->setCharacter('@');
     body2->setColor(arcade::Color::GREEN);
     body2->setPosition({this->_snakePos[2].second, this->_snakePos[2].first});
     this->_object.push_back(body2);
 
     std::shared_ptr<arcade::ITile> queue = createTile();
+    queue->setCharacter('@');
     queue->setColor(arcade::Color::GREEN);
     queue->setPosition({this->_snakePos[3].second, this->_snakePos[3].first});
     this->_object.push_back(queue);
@@ -107,6 +111,7 @@ void Snake::setMapTile()
         for (int j = 0; j < 20; j++) {
             if (this->_map[i][j] == '#') {
                 std::shared_ptr<arcade::ITile> wall = createTile();
+                wall->setCharacter('#');
                 wall->setColor(arcade::Color::WHITE);
                 wall->setPosition({j, i});
                 this->_object.push_back(wall);
@@ -121,6 +126,7 @@ void Snake::createFood()
         for (int j = 0; j < 20; j++) {
             if (this->_map[i][j] == 'F') {
                 std::shared_ptr<arcade::ITile> food = createTile();
+                food->setCharacter('$');
                 food->setColor(arcade::Color::RED);
                 food->setPosition({j, i});
                 this->_object.push_back(food);
