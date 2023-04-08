@@ -14,7 +14,7 @@ NAME = arcade_ncurses.so
 
 CC = g++
 
-CFLAGS = -shared -fPIC
+CFLAGS = -shared -fPIC -lncurses
 
 CPPFLAGS = -I./include
 
