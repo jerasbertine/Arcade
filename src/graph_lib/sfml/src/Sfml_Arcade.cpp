@@ -21,6 +21,7 @@ SfmlArcade::SfmlArcade()
 
 SfmlArcade::~SfmlArcade()
 {
+    this->dicolors.clear();
     this->_window->close();
     this->dicolors.clear();
 }

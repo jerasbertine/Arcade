@@ -118,6 +118,8 @@ void Arcade::menuChanges(arcade::Input state)
 
 Arcade::~Arcade()
 {
+    this->_graphLib.clear();
+    this->_gameLib.clear();
 }
 
 void Arcade::check_up()

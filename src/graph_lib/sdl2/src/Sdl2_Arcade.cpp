@@ -26,6 +26,7 @@ SdlArcade::SdlArcade()
 
 SdlArcade::~SdlArcade()
 {
+    this->dicolors.clear();
     SDL_DestroyRenderer(this->_renderer);
     SDL_DestroyWindow(this->_window);
     IMG_Quit();
