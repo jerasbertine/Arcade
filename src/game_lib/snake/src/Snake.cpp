@@ -265,6 +265,11 @@ std::shared_ptr<arcade::IText> Snake::createText()
     return std::make_shared<arcade::AText>();
 }
 
+arcade::Input Snake::event(arcade::Input input)
+{
+    return arcade::Input::UNDEFINED;
+}
+
 extern "C" {
     void *entryPoint() {
         return new Snake();

@@ -270,6 +270,11 @@ std::shared_ptr<arcade::IText> PacMan::createText()
     return std::make_shared<arcade::AText>();
 }
 
+arcade::Input PacMan::event(arcade::Input input)
+{
+    return arcade::Input::UNDEFINED;
+}
+
 extern "C" {
     void *entryPoint() {
         return new PacMan();

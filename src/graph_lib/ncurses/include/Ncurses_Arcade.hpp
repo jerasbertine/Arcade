@@ -7,6 +7,8 @@
 
 #ifndef NCURSES_ARCADE_HPP_
     #define NCURSES_ARCADE_HPP_
+    #include <ncurses.h>
+    #include <sys/stat.h>
     #include "../../../../include/Arcade-Architecture/IGraphics.hpp"
 
 class NcursesArcade : public arcade::IGraphics {

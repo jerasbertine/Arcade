@@ -9,6 +9,7 @@
 
 NcursesArcade::NcursesArcade()
 {
+    initscr();
 }
 
 NcursesArcade::~NcursesArcade()
@@ -22,7 +23,7 @@ void NcursesArcade::display()
 
 void NcursesArcade::clear()
 {
-    std::cout << "Refresh ncurses" << std::endl;
+    clear();
 }
 
 void NcursesArcade::draw(std::shared_ptr<arcade::IObject> object)

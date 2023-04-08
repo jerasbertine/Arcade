@@ -103,11 +103,11 @@ void Arcade::handleChanges(arcade::Input state)
 void Arcade::menuChanges(arcade::Input state)
 {
     switch (state) {
-        case arcade::Input::RESTART:
+        case arcade::Input::SNAKE:
             this->_selectedGameStr = "snake";
             this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
             break;
-        case arcade::Input::ACTION1:
+        case arcade::Input::PACMAN:
             this->_selectedGameStr = "pacman";
             this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
             break;
