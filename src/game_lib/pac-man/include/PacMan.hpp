@@ -69,6 +69,7 @@ class PacMan : public arcade::IGames {
         std::shared_ptr<arcade::ITile> createTile();
         std::shared_ptr<arcade::ISound> createSound();
         std::shared_ptr<arcade::IText> createText();
+        arcade::Input event(arcade::Input input);
 
     protected:
     private:

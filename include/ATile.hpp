@@ -15,17 +15,25 @@ namespace arcade {
             ATile();
             ~ATile();
             std::string getTexture() const;
-            std::pair<float, float> getPosition() const;
+            std::pair<std::size_t, std::size_t> getPosition() const;
             char getCharacter() const;
             arcade::Color getColor() const;
-            std::pair<std::size_t, std::size_t> getScale() const;
+            std::pair<float, float> getScale() const;
             float getRotation() const;
             void setTexture(std::string path);
             void setPosition(std::pair<std::size_t, std::size_t> position);
             void setCharacter(char c);
             void setColor(arcade::Color color);
-            void setScale(std::pair<std::size_t, std::size_t> scale);
+            void setScale(std::pair<float, float> scale);
             void setRotation(float rotation);
+            std::pair<float, float> getOriginScale();
+            std::pair<std::size_t, std::size_t> getOriginPosition();
+            void setOriginScale(std::pair<float, float> scale);
+            void setOriginPosition(std::pair<std::size_t, std::size_t> position);
+            void setEvent(arcade::Input event);
+            arcade::Input getEvent() const;
+            void setName(std::string name);
+            std::string getName() const;
     
         protected:
         private:
@@ -35,6 +43,10 @@ namespace arcade {
             arcade::Color _color;
             std::pair<std::size_t, std::size_t> _scale;
             float _rotation;
+            std::pair<float, float> _originScale;
+            std::pair<std::size_t, std::size_t> _originPosition;
+            arcade::Input _event;
+            std::string _name;
     };
 }
 

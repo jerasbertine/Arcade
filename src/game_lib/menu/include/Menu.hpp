@@ -37,6 +37,7 @@ class Menu : public arcade::IGames {
         int handleEvent(arcade::Input input, int selected);
         void switchToSnake();
         void switchToPacMan();
+        arcade::Input event(arcade::Input input);
 
     protected:
     private:

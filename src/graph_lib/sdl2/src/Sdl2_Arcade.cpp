@@ -167,9 +167,9 @@ arcade::Input SdlArcade::event()
         }
     }
     if (this->_game == "snake")
-        event = arcade::Input::RESTART;
+        event = arcade::Input::SNAKE;
     if (this->_game == "pacman")
-        event = arcade::Input::ACTION1;
+        event = arcade::Input::PACMAN;
     this->_game = "";
 
     return event;

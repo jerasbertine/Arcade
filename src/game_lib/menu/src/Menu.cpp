@@ -173,6 +173,11 @@ std::shared_ptr<arcade::IText> Menu::createText()
     return std::make_shared<arcade::AText>();
 }
 
+arcade::Input Menu::event(arcade::Input input)
+{
+    return arcade::Input::UNDEFINED;
+}
+
 extern "C" {
     void *entryPoint() {
         return new Menu();
