@@ -16,7 +16,9 @@
     #define KEY_B 98
     #define KEY_G 103
     #define KEY_H 104
+    #define KEY_M 109
     #define KEY_N 110
+    #define KEY_R 114
 
 class NcursesArcade : public arcade::IGraphics {
     public:

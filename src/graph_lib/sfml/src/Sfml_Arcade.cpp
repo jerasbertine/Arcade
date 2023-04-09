@@ -141,6 +141,10 @@ arcade::Input SfmlArcade::event()
             }
             if (this->_event.key.code == sf::Keyboard::Escape)
                 event = arcade::Input::EXIT;
+            if (this->_event.key.code == sf::Keyboard::R)
+                event = arcade::Input::RESTART;
+            if (this->_event.key.code == sf::Keyboard::M)
+                event = arcade::Input::MENU;
         }
     }
     if (this->_game == "snake")
