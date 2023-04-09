@@ -14,7 +14,7 @@
 
 SfmlArcade::SfmlArcade()
 {
-    this->_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Arcade SFML!");
+    this->_window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Arcade SFML!");
     this->_window->setFramerateLimit(10);
     this->_game = "";
 }
@@ -22,7 +22,7 @@ SfmlArcade::SfmlArcade()
 SfmlArcade::~SfmlArcade()
 {
     this->_window->close();
-    delete(this->_window);
+    this->dicolors.clear();
 }
 
 void SfmlArcade::display()
@@ -102,6 +102,12 @@ void SfmlArcade::draw(std::shared_ptr<arcade::IObject> object)
     }
 }
 
+void SfmlArcade::closeWin()
+{
+    this->_window->close();
+    this->dicolors.clear();
+}
+
 arcade::Input SfmlArcade::event()
 {
     arcade::Input event = arcade::Input::UNDEFINED;
@@ -109,7 +115,7 @@ arcade::Input SfmlArcade::event()
     while (this->_window->pollEvent(this->_event)) {
         if (this->_event.type == sf::Event::Closed) {
             event = arcade::EXIT;
-            this->_window->close();
+            closeWin();
         }
         if (this->_event.type == sf::Event::KeyPressed) {
             if (this->_event.key.code == sf::Keyboard::Up)
@@ -126,11 +132,11 @@ arcade::Input SfmlArcade::event()
                 event = arcade::Input::NEXTGAME;
             if (this->_event.key.code == sf::Keyboard::G) {
                 event = arcade::Input::PREVIOUSGRAPH;
-                this->_window->close();
+                closeWin();
             }
             if (this->_event.key.code == sf::Keyboard::H) {
                 event = arcade::Input::NEXTGRAPH;
-                this->_window->close();
+                closeWin();
             }
             if (this->_event.key.code == sf::Keyboard::Escape)
                 event = arcade::Input::EXIT;

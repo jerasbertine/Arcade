@@ -16,7 +16,7 @@ NAME = arcade_sdl2.so
 
 CC = g++
 
-LDFLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf
+LDFLAGS = -lSDL2 -lSDL2_image -lSDL2_ttf -fno-gnu-unique
 
 CFLAGS = -shared -fPIC `sdl2-config --cflags --libs`
 

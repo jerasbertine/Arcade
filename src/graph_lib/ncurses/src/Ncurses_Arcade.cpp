@@ -13,10 +13,21 @@ NcursesArcade::NcursesArcade()
     noecho();
     keypad(stdscr, TRUE);
     curs_set(0);
+    nodelay(stdscr, TRUE);
+    refresh();
+    start_color();
+    init_pair(arcade::Color::BLUE, COLOR_BLUE, COLOR_BLUE);
+    init_pair(arcade::Color::GREEN, COLOR_GREEN, COLOR_GREEN);
+    init_pair(arcade::Color::RED, COLOR_RED, COLOR_RED);
+    init_pair(arcade::Color::YELLOW, COLOR_YELLOW, COLOR_YELLOW);
+    init_pair(arcade::Color::WHITE, COLOR_WHITE, COLOR_WHITE);
+    init_pair(arcade::Color::DARK, COLOR_BLACK, COLOR_BLACK);
 }
 
 NcursesArcade::~NcursesArcade()
 {
+    echo();
+    nodelay(stdscr, FALSE);
     endwin();
 }
 
@@ -27,12 +38,20 @@ void NcursesArcade::display()
 
 void NcursesArcade::clear()
 {
+    ::clear();
     refresh();
+    wrefresh(stdscr);
 }
 
 void NcursesArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
 {
-
+    if (tile->getTexture() == "snakeGame" || tile->getTexture() == "pacmanGame") {
+        this->_game = tile->getTexture().substr(0, tile->getTexture().find("Game"));
+        return;
+    }
+    attron(COLOR_PAIR(tile->getColor()));
+    mvwprintw(stdscr, tile->getPosition().second, tile->getPosition().first, "%c", tile->getCharacter());
+    attroff(COLOR_PAIR(tile->getColor()));
 }
 
 void NcursesArcade::handleSound(std::shared_ptr<arcade::ISound> sound)
@@ -40,9 +59,17 @@ void NcursesArcade::handleSound(std::shared_ptr<arcade::ISound> sound)
 
 }
 
+void NcursesArcade::closeWin()
+{
+    ::clear();
+    refresh();
+    echo();
+    endwin();
+}
+
 void NcursesArcade::handleText(std::shared_ptr<arcade::IText> text)
 {
-    
+    mvwprintw(stdscr, (text->getPosition().second / 100), (text->getPosition().first / 100), "%s", text->getText().c_str());
 }
 
 void NcursesArcade::draw(std::shared_ptr<arcade::IObject> object)
@@ -69,10 +96,11 @@ arcade::Input NcursesArcade::event()
     int key = getch();
     arcade::Input event = arcade::Input::UNDEFINED;
 
+    timeout(120);
     switch (key) {
         case KEY_ESC:
             event = arcade::Input::EXIT;
-            endwin();
+            closeWin();
             break;
         case KEY_UP:
             event = arcade::Input::UP;
@@ -94,16 +122,20 @@ arcade::Input NcursesArcade::event()
             break;
         case KEY_G:
             event = arcade::Input::PREVIOUSGRAPH;
-            endwin();
+            closeWin();
             break;
         case KEY_H:
             event = arcade::Input::NEXTGRAPH;
-            endwin();
+            closeWin();
             break;
         default:
             break;
     }
-
+    if (this->_game == "snake")
+        event = arcade::Input::SNAKE;
+    if (this->_game == "pacman")
+        event = arcade::Input::PACMAN;
+    this->_game = "";
     return event;
 }
 

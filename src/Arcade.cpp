@@ -122,11 +122,10 @@ Arcade::~Arcade()
 
 void Arcade::check_up()
 {
+    std::vector<std::shared_ptr<arcade::IObject>> vector;
     arcade::Input state = arcade::Input::UNDEFINED;
     while ((state = this->_selectedGraph->getInstance()->event()) != arcade::Input::EXIT) {
-        std::vector<std::shared_ptr<arcade::IObject>> vector;
         this->_selectedGraph->getInstance()->clear();
-        vector.clear();
         vector = this->_selectedGame->getInstance()->loop(state);
         for (int i = 0; (std::size_t) i < vector.size(); ++i)
             this->_selectedGraph->getInstance()->draw(vector.at(i));
@@ -134,5 +133,7 @@ void Arcade::check_up()
         handleChanges(state);
         if (this->_selectedGameStr == "menu")
             menuChanges(state);
+        vector.clear();
     }
+    vector.clear();
 }

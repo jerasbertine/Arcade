@@ -25,6 +25,7 @@ class SdlArcade : public arcade::IGraphics {
         void handleTile(std::shared_ptr<arcade::ITile> tile);
         void handleSound(std::shared_ptr<arcade::ISound> sound);
         void handleText(std::shared_ptr<arcade::IText> text);
+        void closeWin();
 
     protected:
     private:
