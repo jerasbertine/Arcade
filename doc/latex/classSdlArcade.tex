@@ -1,0 +1,96 @@
+\hypertarget{classSdlArcade}{}\doxysection{Sdl\+Arcade Class Reference}
+\label{classSdlArcade}\index{SdlArcade@{SdlArcade}}
+
+
+Inheritance diagram for Sdl\+Arcade\+:
+% FIG 0
+
+
+Collaboration diagram for Sdl\+Arcade\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSdlArcade_ac843a1cc66215ddf0a0514d6b636e8ed}{display}} ()
+\begin{DoxyCompactList}\small\item\em Enumerate the possible actions in the arcarde box. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSdlArcade_a67113a5c4d737b8f49ac7ad3e562530d}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear current loaded library window from its drawed elements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSdlArcade_a68b115726e6dbc54398cbf3b38ae4a28}\label{classSdlArcade_a68b115726e6dbc54398cbf3b38ae4a28}} 
+void {\bfseries draw} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IObject}{arcade\+::\+IObject}} $>$ object)
+\item 
+arcade\+::\+Input \mbox{\hyperlink{classSdlArcade_ade18c2a269335fe21ba42e0c06ebe000}{event}} ()
+\begin{DoxyCompactList}\small\item\em Handle events from the current loaded graphic library. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSdlArcade_a999c2aea9bfc7c34dfb1ec001f41f5d6}\label{classSdlArcade_a999c2aea9bfc7c34dfb1ec001f41f5d6}} 
+void {\bfseries handle\+Tile} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1ITile}{arcade\+::\+ITile}} $>$ tile)
+\item 
+\mbox{\Hypertarget{classSdlArcade_a0314d60f8c0df047424afc6d9fe805aa}\label{classSdlArcade_a0314d60f8c0df047424afc6d9fe805aa}} 
+void {\bfseries handle\+Sound} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1ISound}{arcade\+::\+ISound}} $>$ sound)
+\item 
+\mbox{\Hypertarget{classSdlArcade_a66ec9288e6949ad6cbd298eede9f60ff}\label{classSdlArcade_a66ec9288e6949ad6cbd298eede9f60ff}} 
+void {\bfseries handle\+Text} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IText}{arcade\+::\+IText}} $>$ text)
+\item 
+\mbox{\Hypertarget{classSdlArcade_a304539ad23c8dc77a6fcd2e999ec39a3}\label{classSdlArcade_a304539ad23c8dc77a6fcd2e999ec39a3}} 
+void {\bfseries close\+Win} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSdlArcade_a67113a5c4d737b8f49ac7ad3e562530d}\label{classSdlArcade_a67113a5c4d737b8f49ac7ad3e562530d}} 
+\index{SdlArcade@{SdlArcade}!clear@{clear}}
+\index{clear@{clear}!SdlArcade@{SdlArcade}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Sdl\+Arcade\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Clear current loaded library window from its drawed elements. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_ad25d41f480913afafc08143fd4bc84df}{arcade\+::\+IGraphics}}.
+
+\mbox{\Hypertarget{classSdlArcade_ac843a1cc66215ddf0a0514d6b636e8ed}\label{classSdlArcade_ac843a1cc66215ddf0a0514d6b636e8ed}} 
+\index{SdlArcade@{SdlArcade}!display@{display}}
+\index{display@{display}!SdlArcade@{SdlArcade}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void Sdl\+Arcade\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Enumerate the possible actions in the arcarde box. 
+
+Display elements from the current loaded graphic library
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_a7d3fff2224f3a4cb7b31610ab7c2ea77}{arcade\+::\+IGraphics}}.
+
+\mbox{\Hypertarget{classSdlArcade_ade18c2a269335fe21ba42e0c06ebe000}\label{classSdlArcade_ade18c2a269335fe21ba42e0c06ebe000}} 
+\index{SdlArcade@{SdlArcade}!event@{event}}
+\index{event@{event}!SdlArcade@{SdlArcade}}
+\doxysubsubsection{\texorpdfstring{event()}{event()}}
+{\footnotesize\ttfamily arcade\+::\+Input Sdl\+Arcade\+::event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle events from the current loaded graphic library. 
+
+\begin{DoxyReturn}{Returns}
+arcade\+::\+Input corresponds to the last events from the loaded graphic library 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_abc81629c213d032823154cfb8514450a}{arcade\+::\+IGraphics}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/graph\+\_\+lib/sdl2/include/Sdl2\+\_\+\+Arcade.\+hpp\item 
+src/graph\+\_\+lib/sdl2/src/Sdl2\+\_\+\+Arcade.\+cpp\end{DoxyCompactItemize}

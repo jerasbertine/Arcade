@@ -1,0 +1,96 @@
+\hypertarget{classSfmlArcade}{}\doxysection{Sfml\+Arcade Class Reference}
+\label{classSfmlArcade}\index{SfmlArcade@{SfmlArcade}}
+
+
+Inheritance diagram for Sfml\+Arcade\+:
+% FIG 0
+
+
+Collaboration diagram for Sfml\+Arcade\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classSfmlArcade_a425ac89142a5413bab009af75d438669}{display}} ()
+\begin{DoxyCompactList}\small\item\em Enumerate the possible actions in the arcarde box. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSfmlArcade_ad4702fd932062d56cc894d5375417af9}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear current loaded library window from its drawed elements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSfmlArcade_a2f8ceb05b9dc2206af76c1d63ecdf1bf}\label{classSfmlArcade_a2f8ceb05b9dc2206af76c1d63ecdf1bf}} 
+void {\bfseries draw} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IObject}{arcade\+::\+IObject}} $>$ object)
+\item 
+\mbox{\Hypertarget{classSfmlArcade_ac6ce84e1e1f1a2db275dc1ed5f5d8211}\label{classSfmlArcade_ac6ce84e1e1f1a2db275dc1ed5f5d8211}} 
+void {\bfseries handle\+Tile} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1ITile}{arcade\+::\+ITile}} $>$ tile)
+\item 
+\mbox{\Hypertarget{classSfmlArcade_ae303cfd5945d261ab11c2161be0d16e0}\label{classSfmlArcade_ae303cfd5945d261ab11c2161be0d16e0}} 
+void {\bfseries handle\+Sound} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1ISound}{arcade\+::\+ISound}} $>$ sound)
+\item 
+\mbox{\Hypertarget{classSfmlArcade_afdff7bf307a2522308069af9b3050d01}\label{classSfmlArcade_afdff7bf307a2522308069af9b3050d01}} 
+void {\bfseries handle\+Text} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IText}{arcade\+::\+IText}} $>$ text)
+\item 
+arcade\+::\+Input \mbox{\hyperlink{classSfmlArcade_af6e8ecad43bfa0572ca3fc7b7a1f4210}{event}} ()
+\begin{DoxyCompactList}\small\item\em Handle events from the current loaded graphic library. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classSfmlArcade_a8917e6b4a81957957f3b7d0109eba977}\label{classSfmlArcade_a8917e6b4a81957957f3b7d0109eba977}} 
+void {\bfseries close\+Win} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classSfmlArcade_ad4702fd932062d56cc894d5375417af9}\label{classSfmlArcade_ad4702fd932062d56cc894d5375417af9}} 
+\index{SfmlArcade@{SfmlArcade}!clear@{clear}}
+\index{clear@{clear}!SfmlArcade@{SfmlArcade}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Sfml\+Arcade\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Clear current loaded library window from its drawed elements. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_ad25d41f480913afafc08143fd4bc84df}{arcade\+::\+IGraphics}}.
+
+\mbox{\Hypertarget{classSfmlArcade_a425ac89142a5413bab009af75d438669}\label{classSfmlArcade_a425ac89142a5413bab009af75d438669}} 
+\index{SfmlArcade@{SfmlArcade}!display@{display}}
+\index{display@{display}!SfmlArcade@{SfmlArcade}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void Sfml\+Arcade\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Enumerate the possible actions in the arcarde box. 
+
+Display elements from the current loaded graphic library
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_a7d3fff2224f3a4cb7b31610ab7c2ea77}{arcade\+::\+IGraphics}}.
+
+\mbox{\Hypertarget{classSfmlArcade_af6e8ecad43bfa0572ca3fc7b7a1f4210}\label{classSfmlArcade_af6e8ecad43bfa0572ca3fc7b7a1f4210}} 
+\index{SfmlArcade@{SfmlArcade}!event@{event}}
+\index{event@{event}!SfmlArcade@{SfmlArcade}}
+\doxysubsubsection{\texorpdfstring{event()}{event()}}
+{\footnotesize\ttfamily arcade\+::\+Input Sfml\+Arcade\+::event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle events from the current loaded graphic library. 
+
+\begin{DoxyReturn}{Returns}
+arcade\+::\+Input corresponds to the last events from the loaded graphic library 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_abc81629c213d032823154cfb8514450a}{arcade\+::\+IGraphics}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/graph\+\_\+lib/sfml/include/Sfml\+\_\+\+Arcade.\+hpp\item 
+src/graph\+\_\+lib/sfml/src/Sfml\+\_\+\+Arcade.\+cpp\end{DoxyCompactItemize}

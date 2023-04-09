@@ -1,0 +1,28 @@
+\hypertarget{classError}{}\doxysection{Error Class Reference}
+\label{classError}\index{Error@{Error}}
+
+
+Inheritance diagram for Error\+:
+% FIG 0
+
+
+Collaboration diagram for Error\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classError_a155cb059ac750e3768a70709504a71e1}\label{classError_a155cb059ac750e3768a70709504a71e1}} 
+{\bfseries Error} (const std\+::string \&message, const std\+::string \&what)
+\item 
+\mbox{\Hypertarget{classError_a8742fe5f47ec0153a785c44167955ca2}\label{classError_a8742fe5f47ec0153a785c44167955ca2}} 
+const char $\ast$ {\bfseries message} () const noexcept
+\item 
+\mbox{\Hypertarget{classError_a2735217cefcd50320daf7733cf3150a7}\label{classError_a2735217cefcd50320daf7733cf3150a7}} 
+const char $\ast$ {\bfseries what} () const noexcept
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/Error.\+hpp\item 
+src/Error.\+cpp\end{DoxyCompactItemize}
