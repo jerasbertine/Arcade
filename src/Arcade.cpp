@@ -85,6 +85,17 @@ void Arcade::handleChanges(arcade::Input state)
                 this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
             }
             break;
+        case arcade::Input::MENU:
+            if (this->_selectedGameStr != "menu") {
+                this->_selectedGameStr = "menu";
+                this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            }
+            break;
+        case arcade::Input::RESTART:
+            if (this->_selectedGameStr != "menu") {
+                this->_selectedGame->changeInstance(this->_gameLib[this->_selectedGameStr]);
+            }
+            break;
         case arcade::Input::NEXTGRAPH:
             this->_selectedGraphStr = (this->_selectedGraphStr == "sfml" ? "sdl2" :
             this->_selectedGraphStr == "sdl2" ? "ncurses" : "sfml");
@@ -118,6 +129,8 @@ void Arcade::menuChanges(arcade::Input state)
 
 Arcade::~Arcade()
 {
+    this->_graphLib.clear();
+    this->_gameLib.clear();
 }
 
 void Arcade::check_up()

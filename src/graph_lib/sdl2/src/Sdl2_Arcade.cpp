@@ -26,6 +26,7 @@ SdlArcade::SdlArcade()
 
 SdlArcade::~SdlArcade()
 {
+    this->dicolors.clear();
     SDL_DestroyRenderer(this->_renderer);
     SDL_DestroyWindow(this->_window);
     IMG_Quit();
@@ -168,6 +169,14 @@ arcade::Input SdlArcade::event()
                     break;
                 case SDLK_h:
                     event = arcade::Input::NEXTGRAPH;
+                    closeWin();
+                    break;
+                case SDLK_r:
+                    event = arcade::Input::RESTART;
+                    closeWin();
+                    break;
+                case SDLK_m:
+                    event = arcade::Input::MENU;
                     closeWin();
                     break;
                 default:
