@@ -33,6 +33,8 @@ void PacMan::setPacmanPosition(int x, int y)
 
 PacMan::~PacMan()
 {
+    this->_map.clear();
+    this->_object.clear();
 }
 
 void PacMan::checkCollision()

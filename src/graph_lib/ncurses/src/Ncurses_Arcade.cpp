@@ -69,7 +69,7 @@ void NcursesArcade::closeWin()
 
 void NcursesArcade::handleText(std::shared_ptr<arcade::IText> text)
 {
-    mvwprintw(stdscr, (text->getPosition().second / 100), (text->getPosition().first / 100), "%s", text->getText().c_str());
+    mvwprintw(stdscr, (text->getPosition().second / 100) + 20, (text->getPosition().first / 100) + 20, "%s", text->getText().c_str());
 }
 
 void NcursesArcade::draw(std::shared_ptr<arcade::IObject> object)

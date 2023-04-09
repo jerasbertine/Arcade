@@ -30,7 +30,9 @@ void Snake::getSnakePos()
 
 Snake::~Snake()
 {
-
+    this->_map.clear();
+    this->_snakePos.clear();
+    this->_object.clear();
 }
 
 void Snake::inputEvent(arcade::Input input)
