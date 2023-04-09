@@ -119,6 +119,15 @@ void SdlArcade::draw(std::shared_ptr<arcade::IObject> object)
     }
 }
 
+void SdlArcade::closeWin()
+{
+    SDL_DestroyRenderer(this->_renderer);
+    SDL_DestroyWindow(this->_window);
+    IMG_Quit();
+    TTF_Quit();
+    SDL_Quit();
+}
+
 arcade::Input SdlArcade::event()
 {
     arcade::Input event = arcade::Input::UNDEFINED;
@@ -127,13 +136,13 @@ arcade::Input SdlArcade::event()
     while (SDL_PollEvent(&this->_event)) {
         if (this->_event.type == SDL_QUIT) {
             event = arcade::Input::EXIT;
-            SDL_DestroyWindow(this->_window);
+            closeWin();
         }
         if (this->_event.type == SDL_KEYUP) {
             switch (this->_event.key.keysym.sym) {
                 case SDLK_ESCAPE:
                     event = arcade::Input::EXIT;
-                    SDL_DestroyWindow(this->_window);
+                    closeWin();
                     break;
                 case SDLK_UP:
                     event = arcade::Input::UP;
@@ -155,11 +164,11 @@ arcade::Input SdlArcade::event()
                     break;
                 case SDLK_g:
                     event = arcade::Input::PREVIOUSGRAPH;
-                    SDL_DestroyWindow(this->_window);
+                    closeWin();
                     break;
                 case SDLK_h:
                     event = arcade::Input::NEXTGRAPH;
-                    SDL_DestroyWindow(this->_window);
+                    closeWin();
                     break;
                 default:
                     break;

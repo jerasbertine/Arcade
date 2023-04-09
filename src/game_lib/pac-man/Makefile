@@ -18,7 +18,7 @@ NAME = arcade_pacman.so
 
 CC = g++
 
-CFLAGS = -shared -fPIC
+CFLAGS = -shared -fPIC -fno-gnu-unique
 
 CPPFLAGS = -I./include
 

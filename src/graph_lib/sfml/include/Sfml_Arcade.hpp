@@ -23,10 +23,11 @@ class SfmlArcade : public arcade::IGraphics {
         void handleSound(std::shared_ptr<arcade::ISound> sound);
         void handleText(std::shared_ptr<arcade::IText> text);
         arcade::Input event();
+        void closeWin();
 
     protected:
     private:
-        sf::RenderWindow *_window;
+        std::shared_ptr<sf::RenderWindow>_window;
         sf::Event _event;
         sf::Texture _texture;
         std::map<arcade::Color, sf::Color> dicolors = {
