@@ -71,6 +71,10 @@ void Menu::pushGameText()
     text[1]->setText("PacMan");
     text[1]->setPosition({885, 740});
     text[this->_selectedGame]->setColorText(arcade::Color::BLUE);
+    text[this->_selectedGame]->setText(text[this->_selectedGame]->getText().append(" <"));
+    text[this->_selectedGame]->setText("> " + text[this->_selectedGame]->getText());
+    text[this->_selectedGame]->setPosition({(text[this->_selectedGame]->getPosition().first - 40),
+    text[this->_selectedGame]->getPosition().second});
     for (int i = 0; i < 2; ++i)
         this->_vector.push_back(text[i]);
 }
@@ -86,6 +90,10 @@ void Menu::pushHomeText()
     text[1]->setText("Credits");
     text[1]->setPosition({885, 740});
     text[this->_selectedOption]->setColorText(arcade::Color::BLUE);
+    text[this->_selectedOption]->setText(text[this->_selectedOption]->getText().append(" <"));
+    text[this->_selectedOption]->setText("> " + text[this->_selectedOption]->getText());
+    text[this->_selectedOption]->setPosition({(text[this->_selectedOption]->getPosition().first - 40),
+    text[this->_selectedOption]->getPosition().second});
     for (int i = 0; i < 2; ++i)
         this->_vector.push_back(text[i]);
 }
