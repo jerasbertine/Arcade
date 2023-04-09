@@ -1,0 +1,91 @@
+\hypertarget{classarcade_1_1IGraphics}{}\doxysection{arcade\+::IGraphics Class Reference}
+\label{classarcade_1_1IGraphics}\index{arcade::IGraphics@{arcade::IGraphics}}
+
+
+Inheritance diagram for arcade\+::IGraphics\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classarcade_1_1IGraphics_a7d3fff2224f3a4cb7b31610ab7c2ea77}{display}} ()=0
+\begin{DoxyCompactList}\small\item\em Enumerate the possible actions in the arcarde box. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classarcade_1_1IGraphics_ad25d41f480913afafc08143fd4bc84df}{clear}} ()=0
+\begin{DoxyCompactList}\small\item\em Clear current loaded library window from its drawed elements. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{classarcade_1_1IGraphics_a23a0be5747eb12d7efce9c94f5e287d4}{draw}} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IObject}{arcade\+::\+IObject}} $>$ object)=0
+\begin{DoxyCompactList}\small\item\em Draw object on the scene from the current @params \mbox{\hyperlink{classarcade_1_1IObject}{arcade\+::\+IObject}} to be draw in the current graphic library. \end{DoxyCompactList}\item 
+virtual arcade\+::\+Input \mbox{\hyperlink{classarcade_1_1IGraphics_abc81629c213d032823154cfb8514450a}{event}} ()=0
+\begin{DoxyCompactList}\small\item\em Handle events from the current loaded graphic library. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classarcade_1_1IGraphics_ad25d41f480913afafc08143fd4bc84df}\label{classarcade_1_1IGraphics_ad25d41f480913afafc08143fd4bc84df}} 
+\index{arcade::IGraphics@{arcade::IGraphics}!clear@{clear}}
+\index{clear@{clear}!arcade::IGraphics@{arcade::IGraphics}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily virtual void arcade\+::\+IGraphics\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Clear current loaded library window from its drawed elements. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classSfmlArcade_ad4702fd932062d56cc894d5375417af9}{Sfml\+Arcade}}, \mbox{\hyperlink{classSdlArcade_a67113a5c4d737b8f49ac7ad3e562530d}{Sdl\+Arcade}}, and \mbox{\hyperlink{classNcursesArcade_a0449ed19fbf09f5c06771e7db73c52be}{Ncurses\+Arcade}}.
+
+\mbox{\Hypertarget{classarcade_1_1IGraphics_a7d3fff2224f3a4cb7b31610ab7c2ea77}\label{classarcade_1_1IGraphics_a7d3fff2224f3a4cb7b31610ab7c2ea77}} 
+\index{arcade::IGraphics@{arcade::IGraphics}!display@{display}}
+\index{display@{display}!arcade::IGraphics@{arcade::IGraphics}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily virtual void arcade\+::\+IGraphics\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Enumerate the possible actions in the arcarde box. 
+
+Display elements from the current loaded graphic library
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classSfmlArcade_a425ac89142a5413bab009af75d438669}{Sfml\+Arcade}}, \mbox{\hyperlink{classSdlArcade_ac843a1cc66215ddf0a0514d6b636e8ed}{Sdl\+Arcade}}, and \mbox{\hyperlink{classNcursesArcade_ac03e959c9c6a5fcf8e7ab5ff3bbb9426}{Ncurses\+Arcade}}.
+
+\mbox{\Hypertarget{classarcade_1_1IGraphics_a23a0be5747eb12d7efce9c94f5e287d4}\label{classarcade_1_1IGraphics_a23a0be5747eb12d7efce9c94f5e287d4}} 
+\index{arcade::IGraphics@{arcade::IGraphics}!draw@{draw}}
+\index{draw@{draw}!arcade::IGraphics@{arcade::IGraphics}}
+\doxysubsubsection{\texorpdfstring{draw()}{draw()}}
+{\footnotesize\ttfamily virtual void arcade\+::\+IGraphics\+::draw (\begin{DoxyParamCaption}\item[{std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IObject}{arcade\+::\+IObject}} $>$}]{object }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Draw object on the scene from the current @params \mbox{\hyperlink{classarcade_1_1IObject}{arcade\+::\+IObject}} to be draw in the current graphic library. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classarcade_1_1IGraphics_abc81629c213d032823154cfb8514450a}\label{classarcade_1_1IGraphics_abc81629c213d032823154cfb8514450a}} 
+\index{arcade::IGraphics@{arcade::IGraphics}!event@{event}}
+\index{event@{event}!arcade::IGraphics@{arcade::IGraphics}}
+\doxysubsubsection{\texorpdfstring{event()}{event()}}
+{\footnotesize\ttfamily virtual arcade\+::\+Input arcade\+::\+IGraphics\+::event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Handle events from the current loaded graphic library. 
+
+\begin{DoxyReturn}{Returns}
+arcade\+::\+Input corresponds to the last events from the loaded graphic library 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{classSfmlArcade_af6e8ecad43bfa0572ca3fc7b7a1f4210}{Sfml\+Arcade}}, \mbox{\hyperlink{classSdlArcade_ade18c2a269335fe21ba42e0c06ebe000}{Sdl\+Arcade}}, and \mbox{\hyperlink{classNcursesArcade_ac0bec33394248a30da2195722b703eea}{Ncurses\+Arcade}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\+Arcade-\/\+Architecture/IGraphics.\+hpp\end{DoxyCompactItemize}

@@ -1,0 +1,96 @@
+\hypertarget{classNcursesArcade}{}\doxysection{Ncurses\+Arcade Class Reference}
+\label{classNcursesArcade}\index{NcursesArcade@{NcursesArcade}}
+
+
+Inheritance diagram for Ncurses\+Arcade\+:
+% FIG 0
+
+
+Collaboration diagram for Ncurses\+Arcade\+:
+% FIG 1
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classNcursesArcade_ac03e959c9c6a5fcf8e7ab5ff3bbb9426}{display}} ()
+\begin{DoxyCompactList}\small\item\em Enumerate the possible actions in the arcarde box. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classNcursesArcade_a0449ed19fbf09f5c06771e7db73c52be}{clear}} ()
+\begin{DoxyCompactList}\small\item\em Clear current loaded library window from its drawed elements. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNcursesArcade_adfba6817cdcc9b1ccd69a85909a74996}\label{classNcursesArcade_adfba6817cdcc9b1ccd69a85909a74996}} 
+void {\bfseries draw} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IObject}{arcade\+::\+IObject}} $>$ object)
+\item 
+arcade\+::\+Input \mbox{\hyperlink{classNcursesArcade_ac0bec33394248a30da2195722b703eea}{event}} ()
+\begin{DoxyCompactList}\small\item\em Handle events from the current loaded graphic library. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classNcursesArcade_a31606e8861f1f2f20e0f69336aa0d29d}\label{classNcursesArcade_a31606e8861f1f2f20e0f69336aa0d29d}} 
+void {\bfseries handle\+Tile} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1ITile}{arcade\+::\+ITile}} $>$ tile)
+\item 
+\mbox{\Hypertarget{classNcursesArcade_a68b1aa28f79ac9a3ec87b1fbfbc5039c}\label{classNcursesArcade_a68b1aa28f79ac9a3ec87b1fbfbc5039c}} 
+void {\bfseries handle\+Sound} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1ISound}{arcade\+::\+ISound}} $>$ sound)
+\item 
+\mbox{\Hypertarget{classNcursesArcade_a54f8c6cab1cf759fd21bcc2ce4239f86}\label{classNcursesArcade_a54f8c6cab1cf759fd21bcc2ce4239f86}} 
+void {\bfseries handle\+Text} (std\+::shared\+\_\+ptr$<$ \mbox{\hyperlink{classarcade_1_1IText}{arcade\+::\+IText}} $>$ text)
+\item 
+\mbox{\Hypertarget{classNcursesArcade_a9106636ab71099bc9cf90e1f8773c21f}\label{classNcursesArcade_a9106636ab71099bc9cf90e1f8773c21f}} 
+void {\bfseries close\+Win} ()
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classNcursesArcade_a0449ed19fbf09f5c06771e7db73c52be}\label{classNcursesArcade_a0449ed19fbf09f5c06771e7db73c52be}} 
+\index{NcursesArcade@{NcursesArcade}!clear@{clear}}
+\index{clear@{clear}!NcursesArcade@{NcursesArcade}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void Ncurses\+Arcade\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Clear current loaded library window from its drawed elements. 
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_ad25d41f480913afafc08143fd4bc84df}{arcade\+::\+IGraphics}}.
+
+\mbox{\Hypertarget{classNcursesArcade_ac03e959c9c6a5fcf8e7ab5ff3bbb9426}\label{classNcursesArcade_ac03e959c9c6a5fcf8e7ab5ff3bbb9426}} 
+\index{NcursesArcade@{NcursesArcade}!display@{display}}
+\index{display@{display}!NcursesArcade@{NcursesArcade}}
+\doxysubsubsection{\texorpdfstring{display()}{display()}}
+{\footnotesize\ttfamily void Ncurses\+Arcade\+::display (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Enumerate the possible actions in the arcarde box. 
+
+Display elements from the current loaded graphic library
+
+\begin{DoxyReturn}{Returns}
+void 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_a7d3fff2224f3a4cb7b31610ab7c2ea77}{arcade\+::\+IGraphics}}.
+
+\mbox{\Hypertarget{classNcursesArcade_ac0bec33394248a30da2195722b703eea}\label{classNcursesArcade_ac0bec33394248a30da2195722b703eea}} 
+\index{NcursesArcade@{NcursesArcade}!event@{event}}
+\index{event@{event}!NcursesArcade@{NcursesArcade}}
+\doxysubsubsection{\texorpdfstring{event()}{event()}}
+{\footnotesize\ttfamily arcade\+::\+Input Ncurses\+Arcade\+::event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Handle events from the current loaded graphic library. 
+
+\begin{DoxyReturn}{Returns}
+arcade\+::\+Input corresponds to the last events from the loaded graphic library 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{classarcade_1_1IGraphics_abc81629c213d032823154cfb8514450a}{arcade\+::\+IGraphics}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/graph\+\_\+lib/ncurses/include/Ncurses\+\_\+\+Arcade.\+hpp\item 
+src/graph\+\_\+lib/ncurses/src/Ncurses\+\_\+\+Arcade.\+cpp\end{DoxyCompactItemize}
