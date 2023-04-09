@@ -19,3 +19,14 @@ Other groups:
  || 3rd group ||
 - Ylan GARNIER (ylan.garnier@epitech.eu)
 - Yorennz ZELINA (yorennz.zelina@epitech.eu)
+
+Working libraries:
+
+Game:
+    - Snake
+    - PacMan
+
+Graphical:
+    - NCurses
+    - SFML
+    - SDL2

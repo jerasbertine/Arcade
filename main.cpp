@@ -14,7 +14,8 @@ static void usage(void)
     std::cout << "\t./arcade lib" << std::endl;
     std::cout << "DESCRIPTION:" << std::endl;
     std::cout << "\tlib\tlibrary in which the game will be played" << std::endl;
-    std::cout << "You might be able to find them in the lib/ folder" << std::endl;
+    std::cout << "\tYou might be able to find them in the lib/ folder" << std::endl;
+    std::cout << "\tafter doing a \"make\" cmd" << std::endl;
 }
 
 int main(int ac, char **av)
