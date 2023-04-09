@@ -173,11 +173,9 @@ arcade::Input SdlArcade::event()
                     break;
                 case SDLK_r:
                     event = arcade::Input::RESTART;
-                    closeWin();
                     break;
                 case SDLK_m:
                     event = arcade::Input::MENU;
-                    closeWin();
                     break;
                 default:
                     break;

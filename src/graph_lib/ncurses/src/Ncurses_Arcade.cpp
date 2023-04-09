@@ -129,11 +129,9 @@ arcade::Input NcursesArcade::event()
             break;
         case KEY_R:
             event = arcade::Input::RESTART;
-            closeWin();
             break;
         case KEY_M:
             event = arcade::Input::MENU;
-            closeWin();
             break;
         default:
             break;
