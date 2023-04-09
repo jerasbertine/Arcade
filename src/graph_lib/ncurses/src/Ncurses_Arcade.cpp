@@ -27,7 +27,6 @@ NcursesArcade::NcursesArcade()
 NcursesArcade::~NcursesArcade()
 {
     echo();
-    nodelay(stdscr, FALSE);
     endwin();
 }
 
@@ -45,10 +44,11 @@ void NcursesArcade::clear()
 
 void NcursesArcade::handleTile(std::shared_ptr<arcade::ITile> tile)
 {
-    if (tile->getTexture() == "snakeGame" || tile->getTexture() == "pacmanGame") {
-        this->_game = tile->getTexture().substr(0, tile->getTexture().find("Game"));
-        return;
-    }
+    if (tile->getTexture() != "")
+        if (tile->getTexture() == "snakeGame" || tile->getTexture() == "pacmanGame") {
+            this->_game = tile->getTexture().substr(0, tile->getTexture().find("Game"));
+            return;
+        }
     attron(COLOR_PAIR(tile->getColor()));
     mvwprintw(stdscr, tile->getPosition().second, tile->getPosition().first, "%c", tile->getCharacter());
     attroff(COLOR_PAIR(tile->getColor()));
@@ -61,9 +61,8 @@ void NcursesArcade::handleSound(std::shared_ptr<arcade::ISound> sound)
 
 void NcursesArcade::closeWin()
 {
-    ::clear();
-    refresh();
     echo();
+    nodelay(stdscr, FALSE);
     endwin();
 }
 
